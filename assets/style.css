@@ -497,3 +497,38 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
         font-size: 0.8rem;
     }
 }
+
+
+/* ================================
+   ana sayfadaki görsel
+================================ */
+
+.hero-image {
+    position: relative;
+    width: 700px; /* Görsel genişliğinle aynı olsun */
+    height: 700px; /* Görsel yüksekliğinle aynı olsun */
+}
+
+.promo-image {
+    position: absolute; /* Resimleri üst üste bindirir */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* 0.8 saniye pürüzsüz geçiş */
+    opacity: 0; /* Başlangıçta hepsi şeffaf */
+    pointer-events: none; /* Arkadaki resme tıklanmasını engellemesin */
+}
+
+/* Sadece 'active' olan resim görünür ve canlı olur */
+.promo-image.active {
+    opacity: 1;
+    transform: scale(1); /* Normal boyut */
+    pointer-events: auto; /* Tıklanabilir yap */
+}
+
+/* Aktif olmayan resim hafif küçülerek kaybolsun (Vay canına efekti) */
+.promo-image:not(.active) {
+    opacity: 0;
+    transform: scale(0.95);
+}

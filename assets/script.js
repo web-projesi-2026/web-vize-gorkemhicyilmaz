@@ -1,6 +1,6 @@
 function resimDegistir() {
-    const resim1 = document.getElementById('anaResim');
-    const resim2 = document.getElementById('ikinciResim');
+    const resim1 = document.getElementById('anaresim');
+    const resim2 = document.getElementById('ikinciresim');
 
     // Eğer birinci resim görünürse (active sınıfı varsa)
     if (resim1.classList.contains('active')) {

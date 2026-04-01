@@ -1,3 +1,20 @@
 # web-vize-gorkemhicyilmaz
 Bu sayfa Görkem Hiçyılmaz tarafından tasarlanmıştır.
-Projenin amacı, kullanıcıların yapay zekâ uygulamalarını doğru ve etkili bir şekilde kullanabilmesini ve kullanıcıların yanlış prompt girmesini engelleyecek, yapay zekâ çeşitlerini ve kullanım yöntemlerini açıklayan, aynı zamanda hazır prompt örnekleri sunan bir web sayfası geliştirmek hedeflenmektedir.
+
+
+# website
+## proje açıklaması
+Bu proje, popüler yapay zeka araçlarını listelemekle kalmaz; aynı zamanda kullanıcılarına 'Prompt Engineering' (İstem Mühendisliği) tekniklerini öğreterek, bu teknolojilerden maksimum verim almanın yollarını gösteren interaktif bir öğreti sağlar.
+## hedef kullanıcılar
+yazılımcılar, öğrenciler, içerik üreticileri ve daha birçok dijital araç kullanan insanlar tarafından kullanılabilir.
+## temel özellikler
+Hazır prompt kütüphanesi
+Prompt öğrenimi
+Yapay zeka öğrenimi
+## kullanılan teknolojiler
+HTML
+CSS
+JavaScript
+## kurulum
+## canlı link
+https://gorkemhc.github.io/website/

@@ -15,6 +15,5 @@ Yapay zeka öğrenimi
 HTML
 CSS
 JavaScript
-## kurulum
 ## canlı link
 https://web-projesi-2026.github.io/web-vize-gorkemhicyilmaz/

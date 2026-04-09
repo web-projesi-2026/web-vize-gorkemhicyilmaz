@@ -9,18 +9,30 @@
 </head>
 <body>
     <header>
-    <div class="logo">prompt<span>la</span></div>
-
-
-    <nav>
-        <ul id="menu">
-            <li><a href="../index.html">Ana Sayfa</a></li>
-            <li><a href="hakkinda.html">Hakkında</a></li>
-            <li><a href="../index.html">Yapay Zeka Modelleri</a></li>
-            <li><a href="prompt.html">Promptlar</a></li>
-        </ul>
-    </nav>
-</header>
+        <div class="logo">prompt<span>la</span></div>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+                <li><a href="prompt.html">Promptlar</a></li>
+                <li><a href="sosyal.html" class="nav-highlight">Sosyal</a></li>
+                <li class="account-menu">
+                    <button class="account-btn" onclick="toggleDropdown(event)">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        Hesap
+                    </button>
+                    <div class="account-dropdown" id="accountDropdown">
+                        <a href="javascript:void(0)" onclick="openAuthModal('login')">Giriş Yap</a>
+                        <a href="javascript:void(0)" onclick="openAuthModal('register')">Kayıt Ol</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <section class="detail-section">
         <div class="detail-header">
@@ -71,12 +83,56 @@
         <a href="../index.html" class="back-btn">← Ana Sayfaya Dön</a>
     </section>
 
-    <footer>
-        <p>&copy; 2026 YapayG. Tüm Hakları Saklıdır.</p>
-        <div class="socials">
-            <span>Instagram</span> • <span>X (Twitter)</span> • <span>LinkedIn</span>
+    <footer id="contact">
+        <div class="footer-about">
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 1.2rem;">PROMPTLA Hakkında</h3>
+            <p>Bu web platformu <strong>Görkem Hiçyılmaz</strong> tarafından tasarlanmıştır. Geliştirme sürecinde <strong>ChatGPT</strong>, <strong>Kimi AI</strong> ve <strong>Google Gemini</strong> profesyonel asistanlar olarak kullanılmıştır.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p>
+            <div class="socials">
+                <span>Instagram</span> • <span>X (Twitter)</span> • <span>LinkedIn</span>
+            </div>
         </div>
     </footer>
-    
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button>
+                <button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button>
+            </div>
+            
+            <div id="loginForm" class="auth-form active">
+                <button type="button" onclick="socialLogin('google')" class="social-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile giriş yap
+                </button>
+                <button type="button" onclick="socialLogin('github')" class="social-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile giriş yap
+                </button>
+                <div class="divider"><span>veya klasik giriş</span></div>
+                <input type="email" placeholder="E-posta adresiniz" required>
+                <input type="password" placeholder="Şifreniz" required>
+                <button class="btn btn-full">Giriş Yap</button>
+            </div>
+
+            <div id="registerForm" class="auth-form">
+                <button type="button" onclick="socialLogin('google')" class="social-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile kayıt ol
+                </button>
+                <button type="button" onclick="socialLogin('github')" class="social-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile kayıt ol
+                </button>
+                <div class="divider"><span>veya e-posta ile</span></div>
+                <input type="text" placeholder="Adınız Soyadınız" required>
+                <input type="email" placeholder="E-posta adresiniz" required>
+                <input type="password" placeholder="Şifre belirleyin" required>
+                <button class="btn btn-full">Kayıt Ol</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/script.js"></script>
 </body>
 </html>

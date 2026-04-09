@@ -309,6 +309,29 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
 }
 
 /* ================================
+   HAMBURGER MENÜ STİLLERİ
+================================ */
+/* Hamburger Menü (Masaüstünde Gizli) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 4px;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* ================================
    TABLET (1024px ve altı)
 ================================ */
 @media (max-width: 1024px) {
@@ -350,24 +373,72 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
 ================================ */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+        flex-wrap: wrap;
         padding: 15px 5%;
+        gap: 0;
+        /* Logo solda, hamburger sağda — aynı satırda */
+        align-items: center;
     }
 
+    /* Logo flex büyümesini sınırla, hamburger sağa yaslanır */
+    header .logo {
+        flex: 1;
+    }
+
+    /* Hamburger butonu mobilde göster */
+    .hamburger {
+        display: flex;
+        order: 2; /* hamburger logodan sonra, nav'dan önce */
+    }
+
+    /* Nav tam genişlik, hamburger satırının altında */
     nav {
+        order: 3;
         width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+
+    /* Açık halde nav */
+    nav.open {
+        max-height: 300px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
     }
-    
+
+    nav ul li {
+        width: 100%;
+        border-top: 1px solid #222;
+    }
+
+    nav ul li:last-child {
+        border-bottom: 1px solid #222;
+    }
+
     nav a {
-        font-size: 0.85rem;
+        display: block;
+        padding: 14px 5px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    /* Hamburger X animasyonu */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     .hero-content h1 {
@@ -490,11 +561,11 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
     }
     
     nav ul {
-        gap: 10px;
+        gap: 0;
     }
     
     nav a {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -505,8 +576,10 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
 
 .hero-image {
     position: relative;
-    width: 700px; /* Görsel genişliğinle aynı olsun */
-    height: 700px; /* Görsel yüksekliğinle aynı olsun */
+    width: 100%;
+    max-width: 700px; 
+    aspect-ratio: 1 / 1; /* Sabit yükseklik yerine görselin kare kalmasını sağlar */
+    margin: 0 auto; /* Mobilde ortalanması için */
 }
 
 .promo-image {
@@ -531,4 +604,565 @@ footer { padding: 60px; text-align: center; border-top: 1px solid #222; backgrou
 .promo-image:not(.active) {
     opacity: 0;
     transform: scale(0.95);
+}
+
+/* ==========================================================================
+   YENİ EKLENEN UX/UI KODLARI (SOSYAL, MODAL, DROPDOWN, HESAP)
+   ========================================================================== */
+
+/* Animasyonlu Sosyal Butonu */
+.nav-highlight {
+    border: 1px solid var(--accent);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--accent) !important;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(0, 217, 255, 0.05);
+}
+.nav-highlight:hover {
+    background: var(--accent);
+    color: #000 !important;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* ==========================================================================
+   HESAP DROPDOWN SİSTEMİ - DÜZELTİLMİŞ VERSİYON
+   ========================================================================== */
+
+/* TEMEL STİL - Desktop (varsayılan) */
+.account-menu {
+    position: relative;
+}
+
+.account-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.account-btn:hover { 
+    color: var(--accent); 
+}
+
+/* DROPDOWN - Başlangıçta GİZLİ (Desktop) */
+.account-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 2000;
+    pointer-events: none; /* Gizliyken tıklanamaz */
+}
+
+/* AÇIK HALİ - Desktop */
+.account-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto; /* Açıkken tıklanabilir */
+}
+
+.account-dropdown a {
+    padding: 12px 15px;
+    border-bottom: 1px solid #222;
+    font-size: 0.9rem;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.account-dropdown a:last-child { 
+    border-bottom: none; 
+}
+
+.account-dropdown a:hover { 
+    background: #252525; 
+    padding-left: 20px; 
+    color: var(--accent);
+}
+
+/* MODAL YAPI (Giriş/Kayıt ve Oluştur) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show { 
+    display: flex; 
+    animation: fadeInModal 0.3s forwards; 
+}
+
+@keyframes fadeInModal { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    transform: scale(0.9);
+    animation: scaleUp 0.3s forwards;
+}
+
+@keyframes scaleUp { 
+    to { transform: scale(1); } 
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover { 
+    color: #fff; 
+}
+
+/* Modal İçerik (Auth Form) */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.tab-btn.active { 
+    color: var(--accent); 
+    border-bottom-color: var(--accent); 
+}
+
+.auth-form {
+    display: none; /* Varsayılan olarak tüm formları gizle */
+    flex-direction: column;
+}
+
+.auth-form.active {
+    display: flex !important; /* Sadece 'active' olan formu göster */
+}
+
+.auth-form input {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    outline: none;
+}
+
+.auth-form input:focus { 
+    border-color: var(--accent); 
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.social-btn img { 
+    width: 18px; 
+}
+
+.social-btn:hover { 
+    background: #333; 
+}
+
+.divider { 
+    text-align: center; 
+    border-bottom: 1px solid #333; 
+    line-height: 0.1em; 
+    margin: 10px 0; 
+}
+
+.divider span { 
+    background: var(--card-bg); 
+    padding: 0 10px; 
+    color: #666; 
+    font-size: 0.8rem; 
+}
+
+.btn-full {
+    background: #f0f0f0;
+    color: #00b4d8; /* Görseldeki açık mavi/cyan tonu */
+    border: 2px solid #00b4d8;
+    font-weight: 800;
+    padding: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* SOSYAL SAYFASI (TWITTER TARZI) */
+.social-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 5%;
+    gap: 30px;
+    min-height: 80vh;
+}
+
+.social-sidebar { 
+    flex: 1; 
+    position: relative; 
+}
+
+.social-feed { 
+    flex: 2.5; 
+    border: 1px solid #222; 
+    border-radius: 12px; 
+    background: var(--bg-dark); 
+}
+
+.social-right { 
+    flex: 1; 
+}
+
+.create-fab {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px var(--accent-glow);
+    transition: 0.3s;
+    position: sticky;
+    top: 100px;
+}
+
+.create-fab:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 15px 30px rgba(0, 217, 255, 0.4); 
+}
+
+.feed-header {
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 70px;
+    background: rgba(15,15,15,0.8);
+    z-index: 10;
+}
+
+.post-card {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    gap: 15px;
+    transition: background 0.3s;
+}
+
+.post-card:hover { 
+    background: #151515; 
+}
+
+.post-avatar {
+    width: 45px; 
+    height: 45px;
+    background: #333;
+    border-radius: 50%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-weight: bold; 
+    color: #fff; 
+    flex-shrink: 0;
+}
+
+.post-author { 
+    font-weight: bold; 
+    margin-bottom: 5px; 
+}
+
+.post-author span { 
+    color: var(--text-muted); 
+    font-weight: normal; 
+    font-size: 0.9rem; 
+}
+
+.post-badge { 
+    display: inline-block; 
+    font-size: 0.75rem; 
+    background: rgba(0, 217, 255, 0.1); 
+    color: var(--accent); 
+    padding: 3px 8px; 
+    border-radius: 4px; 
+    margin-bottom: 10px; 
+    border: 1px solid var(--accent); 
+}
+
+.post-text { 
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+    margin-bottom: 15px; 
+}
+
+.post-text code { 
+    background: #000; 
+    padding: 10px; 
+    display: block; 
+    border-radius: 5px; 
+    color: var(--accent); 
+    border-left: 3px solid var(--accent); 
+    margin-top: 10px; 
+}
+
+.post-actions { 
+    display: flex; 
+    gap: 30px; 
+    color: var(--text-muted); 
+    font-size: 0.85rem; 
+}
+
+.post-actions span { 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.post-actions span:hover { 
+    color: var(--accent); 
+}
+
+/* Oluştur Modal Özel */
+.create-modal-content { 
+    max-width: 500px; 
+}
+
+.create-options { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+.create-option-btn {
+    background: #111; 
+    border: 1px solid #333; 
+    padding: 20px;
+    border-radius: 10px; 
+    text-align: left; 
+    cursor: pointer; 
+    transition: 0.3s;
+    color: #fff; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px;
+}
+
+.create-option-btn .icon { 
+    font-size: 1.5rem; 
+    margin-bottom: 5px; 
+}
+
+.create-option-btn h3 { 
+    color: var(--accent); 
+}
+
+.create-option-btn p { 
+    color: var(--text-muted); 
+    font-size: 0.85rem; 
+}
+
+.create-option-btn:hover { 
+    border-color: var(--accent); 
+    background: #1a1a1a; 
+    transform: translateX(5px); 
+}
+
+/* Footer Hakkında Düzenlemesi */
+.footer-about { 
+    max-width: 800px; 
+    margin: 0 auto 30px; 
+    text-align: center; 
+    padding-bottom: 30px; 
+    border-bottom: 1px solid #222; 
+    line-height: 1.6; 
+}
+
+.footer-bottom { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* ==========================================================================
+   MOBİL RESPONSIVE DÜZENLEMELER - DROPDOWN VE HESAP MENÜSÜ
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Hesap Menüsü Mobilde */
+    .account-menu {
+        width: 100%;
+        position: relative;
+    }
+    
+    .account-btn {
+        width: 100%;
+        padding: 15px 5px;
+        border-top: 1px solid #222;
+        justify-content: flex-start;
+    }
+    
+    /* Mobilde farklı bir yapı - max-height kullanarak animasyon */
+    .account-dropdown {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: max-height 0.3s ease;
+        pointer-events: auto;
+    }
+    
+    /* Mobilde açık hali */
+    .account-dropdown.show {
+        max-height: 200px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    
+    .account-dropdown a {
+        padding-left: 30px;
+        border: none;
+        color: var(--text-muted);
+    }
+    
+    /* Sosyal Sayfa Mobilde */
+    .social-container { 
+        flex-direction: column; 
+        padding: 10px 5%; 
+    }
+    
+    .social-sidebar { 
+        display: none; 
+    }
+    
+    .create-fab {
+        position: fixed;
+        bottom: 20px; 
+        right: 20px; 
+        top: auto;
+        border-radius: 50%; 
+        width: 60px; 
+        height: 60px;
+        padding: 0; 
+        justify-content: center;
+        z-index: 100; 
+        font-size: 0;
+    }
+    
+    .create-fab svg { 
+        margin: 0; 
+    }
+    
+    .social-right { 
+        display: none; 
+    }
+    
+    .footer-bottom { 
+        flex-direction: column; 
+        gap: 15px; 
+    }
+}
+
+/* ==========================================================================
+   STATİK GİRİŞ/KAYIT SAYFASI (giris-kayit.html için)
+   ========================================================================== */
+.auth-standalone-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    padding: 40px 5%;
+}
+
+.auth-standalone-container {
+    background-color: #121212; /* Orijinal koyu tema rengi */
+    border: 1px solid #333;
+}
+
+/* Mobil için Ana Sayfa Butonu ve Sosyal Düzenlemeleri */
+@media (max-width: 768px) {
+    .auth-standalone-container {
+        padding: 30px 20px;
+    }
+    
+    .social-sidebar .back-btn {
+        display: flex !important;
+        margin-top: 10px;
+    }
 }

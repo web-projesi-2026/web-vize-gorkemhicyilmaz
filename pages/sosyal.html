@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal - PROMPTLA</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="social-page">
+
+    <header>
+    <div class="logo">prompt<span>la</span></div>
+    
+    <div class="hamburger" id="hamburger" onclick="window.toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    
+    <nav>
+        <ul id="menu">
+            <li><a href="../index.html">Ana Sayfa</a></li>
+            <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+            <li><a href="prompt.html">Promptlar</a></li>
+            <li><a href="sosyal.html" class="nav-highlight">Sosyal</a></li>
+            <li class="account-menu">
+                <button class="account-btn" onclick="window.toggleDropdown(event)">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    Hesap
+                </button>
+                <div class="account-dropdown" id="accountDropdown">
+                    <a href="#" onclick="window.openAuthModal(); window.switchAuthTab('login'); return false;">Giriş Yap</a>
+                    <a href="#" onclick="window.openAuthModal(); window.switchAuthTab('register'); return false;">Kayıt Ol</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="social-container">
+        <div class="social-sidebar">
+            <button class="create-fab" onclick="window.openCreateModal()">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Oluştur
+            </button>
+        </div>
+
+        <div class="social-feed">
+            <div class="feed-header">
+                <h2>Topluluk Akışı</h2>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-avatar">G</div>
+                <div class="post-content">
+                    <div class="post-author">Görkem Hiçyılmaz <span>@gorkem • 2s</span></div>
+                    <div class="post-badge">Prompt Paylaşımı (Midjourney)</div>
+                    <p class="post-text">Cyberpunk tarzı neon şehir tasarımları için şu prompt'u kullanabilirsiniz: <br><br> <code>/imagine prompt: neon lit cyberpunk city streets, raining, reflections on asphalt, highly detailed, cinematic lighting --ar 16:9</code></p>
+                    <div class="post-actions">
+                        <span>❤️ 124</span>
+                        <span>💬 12</span>
+                        <span>⭐ Favoriye Al</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-right"></div>
+    </div>
+
+    <div id="createModal" class="modal">
+        <div class="modal-content create-modal-content">
+            <span class="close-btn" onclick="window.closeCreateModal()">&times;</span>
+            <h2 style="margin-bottom: 25px; text-align: center;">Ne paylaşmak istersin?</h2>
+            <div class="create-options">
+                <button class="create-option-btn">
+                    <span class="icon">✨</span>
+                    <h3>Prompt Üret</h3>
+                    <p>Harika sonuç veren bir yapay zeka komutunu paylaş.</p>
+                </button>
+                <button class="create-option-btn">
+                    <span class="icon">📝</span>
+                    <h3>Topluluk Gönderisi</h3>
+                    <p>Yapay zeka hakkında bilgi, haber veya deneyim paylaş.</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+   <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="window.closeAuthModal()">&times;</span>
+        <div class="auth-tabs">
+            <button class="tab-btn active" id="tab-login" onclick="window.switchAuthTab('login')">Giriş Yap</button>
+            <button class="tab-btn" id="tab-register" onclick="window.switchAuthTab('register')">Kayıt Ol</button>
+        </div>
+        
+        
+        <form id="loginForm" class="auth-form active" action="../assets/islem.php" method="POST">
+    <button type="button" onclick="window.socialLogin('google')" class="social-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile giriş yap
+    </button>
+    <button type="button" onclick="window.socialLogin('github')" class="social-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile giriş yap
+    </button>
+    
+    <div class="divider"><span>veya klasik giriş</span></div>
+    
+    <input type="email" id="loginEmail" name="loginEmail" placeholder="E-posta adresiniz" required>
+    <input type="password" id="loginPassword" name="loginPassword" placeholder="Şifreniz" required>
+    
+    <button type="submit" name="giris_yap" class="btn btn-full">Giriş Yap</button>
+</form>
+
+<form id="registerForm" class="auth-form" action="../assets/islem.php" method="POST">
+    <button type="button" onclick="window.socialLogin('google')" class="social-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile kayıt ol
+    </button>
+    <button type="button" onclick="window.socialLogin('github')" class="social-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile kayıt ol
+    </button>
+    
+    <div class="divider"><span>veya e-posta ile</span></div>
+    
+    <input type="text" id="registerName" name="registerName" placeholder="Adınız Soyadınız" required>
+    <input type="email" id="registerEmail" name="registerEmail" placeholder="E-posta adresiniz" required>
+    <input type="password" id="registerPassword" name="registerPassword" placeholder="Şifre belirleyin" required>
+    
+    <button type="submit" name="kayit_ol" class="btn btn-full">Kayıt Ol</button>
+</form>
+    </div>
+</div>
+
+    <script type="module" src="../assets/script.js"></script>
+</body>
+</html>

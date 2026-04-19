@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <div class="logo">prompt<span>la</span></div>
+        <div class="logo">promptla</div>
 
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
             <span class="bar"></span>
@@ -47,7 +47,7 @@
             <a href="#how-to" class="btn">Öğrenmeye Başla</a>
         </div>
         <div class="hero-image" onclick="resimDegistir()" style="cursor: pointer;">
-            <img src="images/örnekgörsel.png" id="anaResim" class="promo-image active" alt="AI Brain" >
+            <img src="images/örnekgörsel.png" id="anaResim" class="promo-image" active" alt="AI Brain" >
             <img src="images/yapayzeka2.png" id="ikinciResim" class="promo-image" alt="AI Brain Alternative" >
         </div>
     </section>
@@ -151,43 +151,44 @@
         </div>
     </footer>
 
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
-            <div class="auth-tabs">
-                <button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button>
-                <button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button>
-            </div>
-            
-            <div id="loginForm" class="auth-form active">
-                <button type="button" onclick="socialLogin('google')" class="social-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile giriş yap
-                </button>
-                <button type="button" onclick="socialLogin('github')" class="social-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile giriş yap
-                </button>
-                <div class="divider"><span>veya klasik giriş</span></div>
-                <input type="email" placeholder="E-posta adresiniz" required>
-                <input type="password" placeholder="Şifreniz" required>
-                <button class="btn btn-full">Giriş Yap</button>
-            </div>
-
-            <div id="registerForm" class="auth-form">
-                <button type="button" onclick="socialLogin('google')" class="social-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile kayıt ol
-                </button>
-                <button type="button" onclick="socialLogin('github')" class="social-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile kayıt ol
-                </button>
-                <div class="divider"><span>veya e-posta ile</span></div>
-                <input type="text" placeholder="Adınız Soyadınız" required>
-                <input type="email" placeholder="E-posta adresiniz" required>
-                <input type="password" placeholder="Şifre belirleyin" required>
-                <button class="btn btn-full">Kayıt Ol</button>
-            </div>
+ <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+        <div class="auth-tabs">
+            <button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button>
+            <button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button>
         </div>
-    </div>
+        
+        <form id="loginForm" class="auth-form active" action="assets/islem.php" method="POST">
+            <button type="button" onclick="window.socialLogin('google')" class="social-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile giriş yap
+            </button>
+            <button type="button" onclick="window.socialLogin('github')" class="social-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile giriş yap
+            </button>
+            <div class="divider"><span>veya klasik giriş</span></div>
+            
+            <input type="email" name="loginEmail" placeholder="E-posta adresiniz" required>
+            <input type="password" name="loginPassword" placeholder="Şifreniz" required>
+            
+            <button type="submit" name="giris_yap" class="btn btn-full">Giriş Yap</button>
+        </form> <form id="registerForm" class="auth-form" action="assets/islem.php" method="POST">
+            <button type="button" onclick="window.socialLogin('google')" class="social-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G"> Google ile kayıt ol
+            </button>
+            <button type="button" onclick="window.socialLogin('github')" class="social-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GH" style="filter: invert(1);"> GitHub ile kayıt ol
+            </button>
+            <div class="divider"><span>veya e-posta ile</span></div>
+            
+            <input type="text" name="registerName" placeholder="Adınız Soyadınız" required>
+            <input type="email" name="registerEmail" placeholder="E-posta adresiniz" required>
+            <input type="password" name="registerPassword" placeholder="Şifre belirleyin" required>
+            
+            <button type="submit" name="kayit_ol" class="btn btn-full">Kayıt Ol</button>
+        </form> </div>
+</div>
 
-    <script type="module" src="../assets/script.js"></script>
+    <script type="module" src="assets/script.js"></script>
 </body>
 </html>

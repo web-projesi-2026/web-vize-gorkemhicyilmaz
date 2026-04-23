@@ -17,4 +17,4 @@ CSS
 JavaScript
 ## kurulum
 ## canlı link
-https://gorkemhc.github.io/website/
+https://web-projesi-2026.github.io/web-vize-gorkemhicyilmaz/

@@ -160,3 +160,12 @@ window.addEventListener('DOMContentLoaded', () => {
     initPostTypeSwitch();
     initToastAutoClose();
 });
+
+// Static demo helpers for GitHub Pages
+window.socialLogin=(provider)=>{alert(provider+' ile giriş/kayıt demo sürümde pasif.');};
+function showStaticToast(msg,type='success'){const old=document.querySelector('.site-toast'); if(old) old.remove(); const d=document.createElement('div'); d.className='site-toast '+type; d.innerHTML='<span>'+msg+'</span>'; document.body.appendChild(d); setTimeout(()=>d.remove(),3500);}
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('form[data-demo]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault(); showStaticToast(form.dataset.demo || 'Demo işlem tamamlandı.');}));
+  const socialForm=document.querySelector('.social-create-form');
+  if(socialForm){socialForm.addEventListener('submit',e=>{e.preventDefault(); const txt=socialForm.querySelector('textarea')?.value.trim(); if(!txt){showStaticToast('Gönderi içeriği boş olamaz.','error'); return;} const feed=document.querySelector('.social-feed'); const card=document.createElement('div'); card.className='post-card'; card.innerHTML='<div class="post-avatar">G</div><div class="post-content"><div class="post-author">Demo Kullanıcı <span>• şimdi</span></div><div class="post-badge">Topluluk Gönderisi</div><p class="post-text"></p><div class="post-actions"><span>❤️ Etkileşim</span><span>💬 Yorum yakında</span><span>⭐ Kaydet yakında</span></div></div>'; card.querySelector('.post-text').textContent=txt; feed.insertBefore(card, feed.children[1]); socialForm.reset(); window.closeCreateModal(); showStaticToast('Demo gönderi sayfaya eklendi.');});}
+});

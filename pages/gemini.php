@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midjourney v6 - PROMPTLA</title>
+    <title>Google Gemini - PROMPTLA</title>
     <link rel="stylesheet" href="../assets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -17,10 +17,10 @@
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="../index.html">Ana Sayfa</a></li>
-                <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
-                <li><a href="prompt.html">Promptlar</a></li>
-                <li><a href="sosyal.html" class="nav-highlight">Sosyal</a></li>
+                <li><a href="../index.php">Ana Sayfa</a></li>
+                <li><a href="../index.php#ai-cards">Yapay Zeka Modelleri</a></li>
+                <li><a href="prompt.php">Promptlar</a></li>
+                <li><a href="sosyal.php" class="nav-highlight">Sosyal</a></li>
                 <li class="account-menu">
                     <button class="account-btn" onclick="toggleDropdown(event)">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -37,51 +37,51 @@
 
     <section class="detail-section">
         <div class="detail-header">
-            <h1>Midjourney v6</h1>
-            <p>Metin tabanlı komutlarla sanatsal ve hiper-gerçekçi görseller üreten öncü yapay zeka görsel oluşturma aracı.</p>
+            <h1>Google Gemini</h1>
+            <p>Google'ın çok modlu yapay zeka asistanı. Metin, görüntü, ses ve videoyu aynı bağlamda anlayabilen ve işleyebilen güçlü bir model.</p>
         </div>
 
         <div class="detail-content">
             <div class="detail-card">
                 <h3>Genel Bakış</h3>
-                <p>Midjourney, metin açıklamalarından (prompt) yüksek kaliteli, sanatsal görseller üreten bir yapay zeka aracıdır. V6 sürümü, önceki versiyonlara göre önemli iyileştirmeler sunar: daha gerçekçi ışık ve gölge, daha iyi metin anlama, gelişmiş insan figürleri ve çoklu stil desteği. Discord platformu üzerinden çalışır ve güçlü bir topluluk desteğine sahiptir.</p>
+                <p>Gemini, Google DeepMind tarafından geliştirilen çok modlu (multimodal) bir yapay zeka modelidir. Transformer mimarisi üzerine kurulu olan Gemini, metin, görsel, ses ve video gibi farklı veri türlerini aynı anda işleyebilir. Gemini 2.5 Pro ve 3.1 Pro versiyonları, karmaşık muhakeme ve çok adımlı problem çözme konusunda öne çıkar.</p>
             </div>
             <div class="detail-card">
                 <h3>Temel Özellikler</h3>
                 <ul>
-                    <li>Gelişmiş görsel kalitesi ve fotogerçekçilik</li>
-                    <li>Karmaşık ve uzun promptları anlama</li>
-                    <li>Çoklu sanat stili birleştirme</li>
-                    <li>İyileştirilmiş insan figürleri ve anatomi</li>
-                    <li>Metin içeren görseller oluşturma</li>
-                    <li>Görsel varyasyon ve düzenleme</li>
-                    <li>Yüksek çözünürlüklü çıktılar</li>
-                    <li>Discord entegrasyonu ve topluluk</li>
+                    <li>Çok modlu anlama (metin + görüntü + ses + video)</li>
+                    <li>1 milyon token bağlam penceresi (yaklaşık 1.500 sayfa)</li>
+                    <li>Google Workspace entegrasyonu (Docs, Sheets, Slides, Gmail)</li>
+                    <li>Gelişmiş kodlama ve matematiksel akıl yürütme</li>
+                    <li>Deep Think modu (çok adımlı mantık yürütme)</li>
+                    <li>Agentic yetenekler (otonom görev yürütme)</li>
+                    <li>Gerçek zamanlı web arama ve bilgi erişimi</li>
+                    <li>Türkçe dahil 40+ dil desteği</li>
                 </ul>
             </div>
             <div class="detail-card">
                 <h3>Kullanım Alanları</h3>
-                <p><strong>Konsept Sanatı:</strong> Oyun, film ve animasyon için karakter ve ortam tasarımı.</p>
-                <p><strong>İllüstrasyon:</strong> Kitap kapakları, dergi illüstrasyonları ve dijital sanat.</p>
-                <p><strong>Reklam ve Pazarlama:</strong> Ürün görselleri, kampanya materyalleri ve marka varlıkları.</p>
-                <p><strong>Mimari ve İç Mekan:</strong> Bina tasarımları ve iç mekan görselleştirmesi.</p>
+                <p><strong>Veri Analizi:</strong> Sheets'te karmaşık veri analizi, formül oluşturma ve görselleştirme.</p>
+                <p><strong>Dokümantasyon:</strong> Docs'ta uzun raporlar yazma, düzenleme ve özetleme.</p>
+                <p><strong>Sunum Hazırlama:</strong> Slides'ta profesyonel sunum taslakları oluşturma.</p>
+                <p><strong>E-posta Yönetimi:</strong> Gmail'de akıllı yanıtlar ve e-posta taslağı oluşturma.</p>
             </div>
             <div class="detail-card">
                 <h3>Fiyatlandırma</h3>
                 <ul>
-                    <li><strong>Temel Plan (10$/ay):</strong> Aylık 200 GPU dakikası, sınırlı hız</li>
-                    <li><strong>Standart Plan (30$/ay):</strong> Aylık 15 GPU saati, sınırsız relax modu</li>
-                    <li><strong>Pro Plan (60$/ay):</strong> Aylık 30 GPU saati, gizli mod, daha hızlı üretim</li>
-                    <li><strong>Mega Plan (120$/ay):</strong> Aylık 60 GPU saati, en yüksek hız ve öncelik</li>
+                    <li><strong>Ücretsiz:</strong> Temel Gemini erişimi, sınırlı kullanım</li>
+                    <li><strong>Gemini Advanced (20$/ay):</strong> Gemini 2.5 Pro, 1M token bağlam, öncelikli erişim</li>
+                    <li><strong>Google One AI Premium:</strong> 2TB depolama + Gemini Advanced özellikleri</li>
+                    <li><strong>API:</strong> Google AI Studio ve Vertex AI üzerinden kullanım başına</li>
                 </ul>
             </div>
             <div class="detail-card" style="grid-column: 1 / -1;">
                 <h3>Avantajlar ve Dezavantajlar</h3>
-                <p><strong>Avantajlar:</strong> Sanatsal kalite, yaratıcı stil çeşitliliği, güçlü topluluk, hızlı iterasyon.</p>
-                <p><strong>Dezavantajlar:</strong> Discord zorunluluğu, öğrenme eğrisi, telif ve etik tartışmalar, kontrol sınırlamaları.</p>
+                <p><strong>Avantajlar:</strong> Google ekosistem entegrasyonu, devasa bağlam penceresi, çok modlu yetenekler, hızlı yanıt süresi.</p>
+                <p><strong>Dezavantajlar:</strong> Bazı durumlarda tutarsızlık, karmaşık görevlerde hata yapma, gizlilik politikaları.</p>
             </div>
         </div>
-        <a href="../index.html" class="back-btn">← Ana Sayfaya Dön</a>
+        <a href="../index.php" class="back-btn">← Ana Sayfaya Dön</a>
     </section>
 
     <footer id="contact">

@@ -17,10 +17,10 @@
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="../index.html">Ana Sayfa</a></li>
-                <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
-                <li><a href="prompt.html">Promptlar</a></li>
-                <li><a href="sosyal.html" class="nav-highlight">Sosyal</a></li>
+                <li><a href="../index.php">Ana Sayfa</a></li>
+                <li><a href="../index.php#ai-cards">Yapay Zeka Modelleri</a></li>
+                <li><a href="prompt.php">Promptlar</a></li>
+                <li><a href="sosyal.php" class="nav-highlight">Sosyal</a></li>
                 <li class="account-menu">
                     <button class="account-btn" onclick="toggleDropdown(event)">
                         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -81,7 +81,7 @@
                 <p><strong>Dezavantajlar:</strong> Discord zorunluluğu, öğrenme eğrisi, telif ve etik tartışmalar, kontrol sınırlamaları.</p>
             </div>
         </div>
-        <a href="../index.html" class="back-btn">← Ana Sayfaya Dön</a>
+        <a href="../index.php" class="back-btn">← Ana Sayfaya Dön</a>
     </section>
 
     <footer id="contact">

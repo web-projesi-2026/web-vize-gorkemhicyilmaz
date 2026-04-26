@@ -1,1 +1,287 @@
-<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PROMPTLA - Yapay Zeka Modelleri ve Prompt Eğitimi</title><link rel="stylesheet" href="assets/style.css"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body class="site-shell"><header><div class="logo">PROMPT<span>LA</span></div><div class="hamburger" id="hamburger" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div><nav><ul id="menu"><li><a href="index.html">Ana Sayfa</a></li><li><a href="index.html#ai-cards">Yapay Zeka Modelleri</a></li><li><a href="pages/prompt.html">Promptlar</a></li><li><a href="pages/sosyal.html" class="nav-highlight">Sosyal</a></li><li class="account-menu"><button class="account-btn" onclick="toggleDropdown(event)">Hesap</button><div class="account-dropdown" id="accountDropdown"><a href="pages/giris-kayit.html">Giriş Yap</a><a href="pages/giris-kayit.html">Kayıt Ol</a></div></li></ul></nav></header><section id="hero" class="hero-clean"><div class="hero-bg-grid"></div><div class="hero-left"><span class="eyebrow">YAPAY ZEKA • EĞİTİM • PROMPT • TOPLULUK</span><h1>Yapay zekayı sadece kullanma, mantığını da öğren.</h1><p>PROMPTLA; yapay zeka araçlarını tanıtan, prompt yazım mantığını öğreten, örnek üretimleri gösteren ve kullanıcıların paylaşım yapabildiği modern bir öğrenme platformudur.</p><div class="hero-buttons"><a href="#ai-cards" class="btn">Modelleri İncele</a><a href="pages/prompt.html" class="btn btn-secondary">Promptlara Git</a></div><div class="hero-info-cards"><div class="hero-info-card"><strong>Model Rehberi</strong><span>Hangi araç ne için kullanılır?</span></div><div class="hero-info-card"><strong>Prompt Eğitimi</strong><span>Örneklerle mantığı öğren</span></div><div class="hero-info-card"><strong>Topluluk</strong><span>Paylaş, incele, geliş</span></div></div></div><div class="hero-right"><div class="hero-slider-box"><div class="hero-slide active"><div class="hero-image-frame placeholder-art">LEGO STİL KARAKTER PROMPTU</div><div class="hero-image-text"><h3>Lego Stil Karakter Promptu</h3><p>Gerçek fotoğrafı oyuncak estetiğine dönüştüren yaratıcı prompt örneği.</p></div></div><div class="hero-slide"><div class="hero-image-frame placeholder-art">TEKNOLOJİ ÜRÜN İNFOĞRAFİĞİ</div><div class="hero-image-text"><h3>Teknoloji Ürün İnfoğrafiği</h3><p>Bir ürünü teknik ve estetik olarak anlatan düzenli görsel dil.</p></div></div><div class="hero-slide"><div class="hero-image-frame placeholder-art">BLUEPRINT ANALİZ TASARIMI</div><div class="hero-image-text"><h3>Blueprint Analiz Tasarımı</h3><p>Teknik çizim hissi veren analiz afişleri için güçlü referans görsel.</p></div></div><div class="hero-dots"><button class="hero-dot active" onclick="setHeroSlide(0)"></button><button class="hero-dot" onclick="setHeroSlide(1)"></button><button class="hero-dot" onclick="setHeroSlide(2)"></button></div></div></div></section><section id="how-to" class="section-block"><div class="container"><div class="section-heading"><span class="eyebrow">ÖĞRENME MANTIĞI</span><h2>Yapay zekadan daha iyi sonuç almanın temel yapısı</h2><p>İyi sonuç; doğru modeli seçmek, doğru prompt yazmak ve doğru format istemekle gelir.</p></div><div class="steps-grid"><div class="step-card"><div class="step-no">01</div><h3>Bağlam ver</h3><p>Modele kim olduğunu, hangi konuda konuştuğunu ve hangi çerçevede yanıt vermesi gerektiğini söyle.</p></div><div class="step-card"><div class="step-no">02</div><h3>Görevi net tanımla</h3><p>Metin mi, analiz mi, kod mu, görsel fikri mi istediğini doğrudan belirt.</p></div><div class="step-card"><div class="step-no">03</div><h3>Formatı sabitle</h3><p>Madde madde, kısa, detaylı, tablo halinde ya da öğretici biçimde istemek sonucu güçlendirir.</p></div></div></div></section><section id="ai-cards" class="section-block"><div class="container-wide"><div class="section-heading"><span class="eyebrow">MODEL REHBERİ</span><h2>Temel yapay zeka araçları</h2><p>Hangi modelin hangi işte işine yarayacağını hızlıca incele.</p></div><div class="model-grid"><div class="model-card"><div class="card-header">ChatGPT</div><p>Genel amaçlı kullanım, içerik üretimi, öğrenme, açıklama ve fikir geliştirme için güçlü bir başlangıç modelidir.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/chatgpt.html" class="card-btn">Ayrıntılı İncele</a></div><div class="model-card"><div class="card-header">Microsoft Copilot</div><p>Belge üretimi, ofis iş akışı ve kurumsal kullanım senaryolarında anlamlı avantajlar sunar.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/copilot.html" class="card-btn">Ayrıntılı İncele</a></div><div class="model-card"><div class="card-header">Google Gemini</div><p>Çok modlu çalışma, geniş bağlam ve Google servisleriyle birlikte kullanım tarafında dikkat çeker.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/gemini.html" class="card-btn">Ayrıntılı İncele</a></div><div class="model-card"><div class="card-header">Claude</div><p>Uzun metin okuma, açıklama yapma ve daha sakin, düzenli çıktı üretme tarafında güçlüdür.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/claude.html" class="card-btn">Ayrıntılı İncele</a></div><div class="model-card"><div class="card-header">Midjourney</div><p>Sanatsal yönü güçlü, estetik ve atmosferli görseller üretmek isteyenler için önemli bir araçtır.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/midjourney.html" class="card-btn">Ayrıntılı İncele</a></div><div class="model-card"><div class="card-header">Kimi</div><p>Uzun içerik işleme ve analiz mantığını incelemek isteyen kullanıcılar için ilgi çekici bir alternatiftir.</p><span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/kimi.html" class="card-btn">Ayrıntılı İncele</a></div></div></div></section><section id="iletisim" class="section-block"><div class="container"><div class="section-heading"><span class="eyebrow">İLETİŞİM</span><h2>Geri bildirim gönder</h2><p>Site hakkındaki görüşlerini, önerilerini veya sorularını bizimle paylaşabilirsin.</p></div><form data-demo="Mesaj demo olarak alındı." class="contact-form step-card"><input type="text" placeholder="Adınız Soyadınız" required><input type="email" placeholder="E-posta" required><textarea rows="5" placeholder="Mesajınız" required></textarea><button type="submit" class="btn">Gönder</button></form></div></section><footer id="contact"><div class="footer-about"><h3>PROMPTLA Hakkında</h3><p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların kendi üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p></div><div class="footer-bottom"><p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p><div class="socials"><span>Instagram</span> • <span>X</span> • <span>LinkedIn</span></div></div></footer><div id="authModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeAuthModal()">&times;</span><div class="auth-tabs"><button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button><button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button></div><form id="loginForm" class="auth-form active" data-demo="Demo giriş başarılı gibi gösterildi."><input type="email" placeholder="E-posta adresiniz" required><input type="password" placeholder="Şifreniz" required><button type="submit" class="btn btn-full">Giriş Yap</button></form><form id="registerForm" class="auth-form" data-demo="Demo kayıt başarılı gibi gösterildi."><input type="text" placeholder="Adınız Soyadınız" required><input type="email" placeholder="E-posta adresiniz" required><input type="password" placeholder="Şifre belirleyin" required><button type="submit" class="btn btn-full">Kayıt Ol</button></form></div></div><script src="assets/script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      PROMPTLA - Yapay Zeka Modelleri ve Prompt Eğitimi
+    </title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="site-shell">
+    <header>
+      <div class="logo">
+        PROMPT<span>LA</span>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+      <nav>
+        <ul id="menu">
+          <li>
+            <a href="index.html">Ana Sayfa</a>
+          </li>
+          <li>
+            <a href="index.html#ai-cards">Yapay Zeka Modelleri</a>
+          </li>
+          <li>
+            <a href="pages/prompt.html">Promptlar</a>
+          </li>
+          <li>
+            <a href="pages/sosyal.html" class="nav-highlight">Sosyal</a>
+          </li>
+          <li class="account-menu">
+            <button class="account-btn" onclick="toggleDropdown(event)">Hesap</button>
+            <div class="account-dropdown" id="accountDropdown">
+              <a href="pages/giris-kayit.html">Giriş Yap</a><a href="pages/giris-kayit.html">Kayıt Ol</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section id="hero" class="hero-clean">
+      <div class="hero-bg-grid">
+      </div>
+      <div class="hero-left">
+        <span class="eyebrow">YAPAY ZEKA • EĞİTİM • PROMPT • TOPLULUK</span>
+        <h1>
+          Yapay zekayı sadece kullanma, mantığını da öğren.
+        </h1>
+        <p>
+          PROMPTLA; yapay zeka araçlarını tanıtan, prompt yazım mantığını öğreten, örnek üretimleri gösteren ve kullanıcıların paylaşım yapabildiği modern bir öğrenme platformudur.
+        </p>
+        <div class="hero-buttons">
+          <a href="#ai-cards" class="btn">Modelleri İncele</a><a href="pages/prompt.html" class="btn btn-secondary">Promptlara Git</a>
+        </div>
+        <div class="hero-info-cards">
+          <div class="hero-info-card">
+            <strong>Model Rehberi</strong><span>Hangi araç ne için kullanılır?</span>
+          </div>
+          <div class="hero-info-card">
+            <strong>Prompt Eğitimi</strong><span>Örneklerle mantığı öğren</span>
+          </div>
+          <div class="hero-info-card">
+            <strong>Topluluk</strong><span>Paylaş, incele, geliş</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-slider-box">
+          <div class="hero-slide active">
+            <div class="hero-image-frame placeholder-art">
+              LEGO STİL KARAKTER PROMPTU
+            </div>
+            <div class="hero-image-text">
+              <h3>
+                Lego Stil Karakter Promptu
+              </h3>
+              <p>
+                Gerçek fotoğrafı oyuncak estetiğine dönüştüren yaratıcı prompt örneği.
+              </p>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-image-frame placeholder-art">
+              TEKNOLOJİ ÜRÜN İNFOĞRAFİĞİ
+            </div>
+            <div class="hero-image-text">
+              <h3>
+                Teknoloji Ürün İnfoğrafiği
+              </h3>
+              <p>
+                Bir ürünü teknik ve estetik olarak anlatan düzenli görsel dil.
+              </p>
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-image-frame placeholder-art">
+              BLUEPRINT ANALİZ TASARIMI
+            </div>
+            <div class="hero-image-text">
+              <h3>
+                Blueprint Analiz Tasarımı
+              </h3>
+              <p>
+                Teknik çizim hissi veren analiz afişleri için güçlü referans görsel.
+              </p>
+            </div>
+          </div>
+          <div class="hero-dots">
+            <button class="hero-dot active" onclick="setHeroSlide(0)"></button><button class="hero-dot" onclick="setHeroSlide(1)"></button><button class="hero-dot" onclick="setHeroSlide(2)"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="how-to" class="section-block">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">ÖĞRENME MANTIĞI</span>
+          <h2>
+            Yapay zekadan daha iyi sonuç almanın temel yapısı
+          </h2>
+          <p>
+            İyi sonuç; doğru modeli seçmek, doğru prompt yazmak ve doğru format istemekle gelir.
+          </p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-no">
+              01
+            </div>
+            <h3>
+              Bağlam ver
+            </h3>
+            <p>
+              Modele kim olduğunu, hangi konuda konuştuğunu ve hangi çerçevede yanıt vermesi gerektiğini söyle.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-no">
+              02
+            </div>
+            <h3>
+              Görevi net tanımla
+            </h3>
+            <p>
+              Metin mi, analiz mi, kod mu, görsel fikri mi istediğini doğrudan belirt.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-no">
+              03
+            </div>
+            <h3>
+              Formatı sabitle
+            </h3>
+            <p>
+              Madde madde, kısa, detaylı, tablo halinde ya da öğretici biçimde istemek sonucu güçlendirir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="ai-cards" class="section-block">
+      <div class="container-wide">
+        <div class="section-heading">
+          <span class="eyebrow">MODEL REHBERİ</span>
+          <h2>
+            Temel yapay zeka araçları
+          </h2>
+          <p>
+            Hangi modelin hangi işte işine yarayacağını hızlıca incele.
+          </p>
+        </div>
+        <div class="model-grid">
+          <div class="model-card">
+            <div class="card-header">
+              ChatGPT
+            </div>
+            <p>
+              Genel amaçlı kullanım, içerik üretimi, öğrenme, açıklama ve fikir geliştirme için güçlü bir başlangıç modelidir.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/chatgpt.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+          <div class="model-card">
+            <div class="card-header">
+              Microsoft Copilot
+            </div>
+            <p>
+              Belge üretimi, ofis iş akışı ve kurumsal kullanım senaryolarında anlamlı avantajlar sunar.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/copilot.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+          <div class="model-card">
+            <div class="card-header">
+              Google Gemini
+            </div>
+            <p>
+              Çok modlu çalışma, geniş bağlam ve Google servisleriyle birlikte kullanım tarafında dikkat çeker.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/gemini.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+          <div class="model-card">
+            <div class="card-header">
+              Claude
+            </div>
+            <p>
+              Uzun metin okuma, açıklama yapma ve daha sakin, düzenli çıktı üretme tarafında güçlüdür.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/claude.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+          <div class="model-card">
+            <div class="card-header">
+              Midjourney
+            </div>
+            <p>
+              Sanatsal yönü güçlü, estetik ve atmosferli görseller üretmek isteyenler için önemli bir araçtır.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/midjourney.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+          <div class="model-card">
+            <div class="card-header">
+              Kimi
+            </div>
+            <p>
+              Uzun içerik işleme ve analiz mantığını incelemek isteyen kullanıcılar için ilgi çekici bir alternatiftir.
+            </p>
+            <span class="usage-badge">Kullanım: “Bana adım adım öğret.”</span><a href="pages/kimi.html" class="card-btn">Ayrıntılı İncele</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="iletisim" class="section-block">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">İLETİŞİM</span>
+          <h2>
+            Geri bildirim gönder
+          </h2>
+          <p>
+            Site hakkındaki görüşlerini, önerilerini veya sorularını bizimle paylaşabilirsin.
+          </p>
+        </div>
+        <form data-demo="Mesaj demo olarak alındı." class="contact-form step-card">
+          <input type="text" placeholder="Adınız Soyadınız" required><input type="email" placeholder="E-posta" required>
+          <textarea rows="5" placeholder="Mesajınız" required>
+          </textarea>
+          <button type="submit" class="btn">Gönder</button>
+        </form>
+      </div>
+    </section>
+    <footer id="contact">
+      <div class="footer-about">
+        <h3>
+          PROMPTLA Hakkında
+        </h3>
+        <p>
+          PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların kendi üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.
+        </p>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.
+        </p>
+        <div class="socials">
+          <span>Instagram</span> • <span>X</span> • <span>LinkedIn</span>
+        </div>
+      </div>
+    </footer>
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+        <div class="auth-tabs">
+          <button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button><button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button>
+        </div>
+        <form id="loginForm" class="auth-form active" data-demo="Demo giriş başarılı gibi gösterildi.">
+          <input type="email" placeholder="E-posta adresiniz" required><input type="password" placeholder="Şifreniz" required><button type="submit" class="btn btn-full">Giriş Yap</button>
+        </form>
+        <form id="registerForm" class="auth-form" data-demo="Demo kayıt başarılı gibi gösterildi.">
+          <input type="text" placeholder="Adınız Soyadınız" required><input type="email" placeholder="E-posta adresiniz" required><input type="password" placeholder="Şifre belirleyin" required><button type="submit" class="btn btn-full">Kayıt Ol</button>
+        </form>
+      </div>
+    </div>
+    <script src="assets/script.js">
+    </script>
+  </body>
+</html>

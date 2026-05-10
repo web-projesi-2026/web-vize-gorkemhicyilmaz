@@ -47,17 +47,13 @@ window.switchAuthTab = (type) => {
     document.getElementById('registerForm')?.classList.toggle('active', !isLogin);
 };
 
-window.switchPageAuthTab = (type) => {
-    const isLogin = type === 'login';
-
-    document.getElementById('page-tab-login')?.classList.toggle('active', isLogin);
-    document.getElementById('page-tab-register')?.classList.toggle('active', !isLogin);
-    document.getElementById('pageLoginForm')?.classList.toggle('active', isLogin);
-    document.getElementById('pageRegisterForm')?.classList.toggle('active', !isLogin);
-};
-
 window.openCreateModal = () => {
-    document.getElementById('createModal')?.classList.add('show');
+    const modal = document.getElementById('createModal');
+    if (modal) {
+        modal.classList.add('show');
+        const content = modal.querySelector('.modal-content');
+        if (content) content.scrollTop = 0;
+    }
 };
 
 window.closeCreateModal = () => {
@@ -130,6 +126,108 @@ function initToastAutoClose() {
     }, 3500);
 }
 
+/* PROMPT KOPYALAMA */
+function fallbackCopyText(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.left = '-9999px';
+    area.style.top = '-9999px';
+    document.body.appendChild(area);
+    area.focus();
+    area.select();
+
+    try {
+        const ok = document.execCommand('copy');
+        document.body.removeChild(area);
+        return ok ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    } catch (err) {
+        document.body.removeChild(area);
+        return Promise.reject(err);
+    }
+}
+
+window.copyPrompt = function(button) {
+    const promptBox = button.closest('.prompt-code-box');
+    const promptText = promptBox ? promptBox.querySelector('.prompt-scroll-text') : null;
+
+    if (!promptText) return;
+
+    const text = promptText.innerText.trim();
+    const oldText = button.innerText;
+    const copyJob = (navigator.clipboard && window.isSecureContext)
+        ? navigator.clipboard.writeText(text)
+        : fallbackCopyText(text);
+
+    button.classList.remove('copied', 'error');
+    button.disabled = true;
+
+    copyJob.then(() => {
+        button.innerText = 'Kopyalandı ✓';
+        button.classList.add('copied');
+
+        setTimeout(() => {
+            button.innerText = oldText;
+            button.classList.remove('copied');
+            button.disabled = false;
+        }, 1500);
+    }).catch(() => {
+        button.innerText = 'Kopyalanamadı';
+        button.classList.add('error');
+
+        setTimeout(() => {
+            button.innerText = oldText;
+            button.classList.remove('error');
+            button.disabled = false;
+        }, 1500);
+    });
+};
+
+window.togglePromptText = function(button) {
+    const promptBox = button.closest('.prompt-code-box');
+    if (!promptBox) return;
+
+    const isExpanded = promptBox.classList.toggle('expanded');
+    promptBox.classList.toggle('collapsed', !isExpanded);
+    button.innerText = isExpanded ? 'Daha az göster' : 'Daha fazla …';
+};
+
+function initPromptExpandButtons() {
+    document.querySelectorAll('.prompt-code-box').forEach((box) => {
+        const text = box.querySelector('.prompt-text-collapsible');
+        const button = box.querySelector('.prompt-expand-btn');
+
+        if (!text || !button) return;
+
+        const maxHeight = window.innerWidth <= 480 ? 220 : 260;
+        if (text.scrollHeight <= maxHeight + 8) {
+            button.classList.add('is-hidden');
+            box.classList.remove('collapsed');
+            box.classList.add('expanded');
+        }
+    });
+}
+
+window.switchPageAuthTab = (type) => {
+    const isLogin = type === 'login';
+
+    document.getElementById('page-tab-login')?.classList.toggle('active', isLogin);
+    document.getElementById('page-tab-register')?.classList.toggle('active', !isLogin);
+    document.getElementById('pageLoginForm')?.classList.toggle('active', isLogin);
+    document.getElementById('pageRegisterForm')?.classList.toggle('active', !isLogin);
+};
+
+window.closeTestNotice = () => {
+    const notice = document.getElementById('testNotice');
+    if (notice) notice.style.display = 'none';
+};
+
+window.socialLogin = (provider) => {
+    const label = provider ? provider.charAt(0).toUpperCase() + provider.slice(1) : 'Sosyal';
+    alert(label + ' ile giriş özelliği yakında aktif edilecek.');
+};
+
 /* GLOBAL CLICK HANDLER */
 window.addEventListener('click', (e) => {
     const dropdown = document.getElementById('accountDropdown');
@@ -150,6 +248,56 @@ window.addEventListener('click', (e) => {
     }
 });
 
+
+
+/* SOSYAL GÖRSEL ÖNİZLEME */
+window.clearSocialImage = function() {
+    const input = document.getElementById('postImageInput');
+    const preview = document.getElementById('postImagePreview');
+    const wrap = document.getElementById('postImagePreviewWrap');
+    const fileName = document.getElementById('postImageFileName');
+
+    if (input) input.value = '';
+    if (preview) preview.src = '';
+    if (wrap) wrap.classList.remove('show');
+    if (fileName) fileName.textContent = 'JPG, PNG veya WEBP. Maksimum 5 MB.';
+};
+
+function initSocialImageUpload() {
+    const input = document.getElementById('postImageInput');
+    const preview = document.getElementById('postImagePreview');
+    const wrap = document.getElementById('postImagePreviewWrap');
+    const fileName = document.getElementById('postImageFileName');
+
+    if (!input || !preview || !wrap) return;
+
+    input.addEventListener('change', () => {
+        const file = input.files && input.files[0] ? input.files[0] : null;
+
+        if (!file) {
+            window.clearSocialImage();
+            return;
+        }
+
+        if (fileName) {
+            fileName.textContent = file.name;
+        }
+
+        if (file.type && !file.type.startsWith('image/')) {
+            window.clearSocialImage();
+            alert('Lütfen JPG, PNG veya WEBP formatında bir fotoğraf seç.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            preview.src = event.target.result;
+            wrap.classList.add('show');
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
 /* PAGE INIT */
 window.addEventListener('DOMContentLoaded', () => {
     if (typeof window.setHeroSlide === 'function') {
@@ -158,14 +306,128 @@ window.addEventListener('DOMContentLoaded', () => {
 
     startHeroSlider();
     initPostTypeSwitch();
+    initPromptExpandButtons();
     initToastAutoClose();
+    initSocialImageUpload();
 });
 
-// Static demo helpers for GitHub Pages
-window.socialLogin=(provider)=>{alert(provider+' ile giriş/kayıt demo sürümde pasif.');};
-function showStaticToast(msg,type='success'){const old=document.querySelector('.site-toast'); if(old) old.remove(); const d=document.createElement('div'); d.className='site-toast '+type; d.innerHTML='<span>'+msg+'</span>'; document.body.appendChild(d); setTimeout(()=>d.remove(),3500);}
-window.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('form[data-demo]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault(); showStaticToast(form.dataset.demo || 'Demo işlem tamamlandı.');}));
-  const socialForm=document.querySelector('.social-create-form');
-  if(socialForm){socialForm.addEventListener('submit',e=>{e.preventDefault(); const txt=socialForm.querySelector('textarea')?.value.trim(); if(!txt){showStaticToast('Gönderi içeriği boş olamaz.','error'); return;} const feed=document.querySelector('.social-feed'); const card=document.createElement('div'); card.className='post-card'; card.innerHTML='<div class="post-avatar">G</div><div class="post-content"><div class="post-author">Demo Kullanıcı <span>• şimdi</span></div><div class="post-badge">Topluluk Gönderisi</div><p class="post-text"></p><div class="post-actions"><span>❤️ Etkileşim</span><span>💬 Yorum yakında</span><span>⭐ Kaydet yakında</span></div></div>'; card.querySelector('.post-text').textContent=txt; feed.insertBefore(card, feed.children[1]); socialForm.reset(); window.closeCreateModal(); showStaticToast('Demo gönderi sayfaya eklendi.');});}
-});
+/* ================================
+   GITHUB HTML DEMO DAVRANISLARI
+================================ */
+(function() {
+    function showDemoToast(message, type = 'success') {
+        document.querySelectorAll('.site-toast.demo-generated').forEach((el) => el.remove());
+        const toast = document.createElement('div');
+        toast.className = 'site-toast demo-generated ' + (type === 'error' ? 'error' : 'success');
+        toast.innerHTML = '<span>' + message + '</span><button type="button" aria-label="Kapat">×</button>';
+        toast.querySelector('button').addEventListener('click', () => toast.remove());
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3400);
+    }
+
+    window.showDemoToast = showDemoToast;
+
+    function toggleDemoButton(button) {
+        button.classList.toggle('active');
+        const span = button.querySelector('span');
+        if (span) {
+            const current = parseInt(span.textContent || '0', 10) || 0;
+            span.textContent = button.classList.contains('active') ? current + 1 : Math.max(0, current - 1);
+        }
+        const txt = button.dataset.activeText && button.dataset.passiveText;
+        if (txt) {
+            const spanHtml = span ? ' <span>' + span.textContent + '</span>' : '';
+            button.innerHTML = (button.classList.contains('active') ? button.dataset.activeText : button.dataset.passiveText) + spanHtml;
+        }
+    }
+
+    function createPostCard(content, imageSrc, type) {
+        const card = document.createElement('div');
+        card.className = 'post-card demo-created-post';
+        const safeText = (content || '').trim() || 'Fotoğraflı demo gönderi';
+        const now = new Date();
+        const stamp = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+        card.innerHTML = `
+            <div class="post-avatar"><span>GH</span></div>
+            <div class="post-content">
+                <div class="post-author">Görkem Hiçyılmaz <span>• ${stamp}</span></div>
+                <div class="post-badge">${type === 'prompt' ? 'Prompt Paylaşımı' : 'Topluluk Gönderisi'}</div>
+                <p class="post-text"></p>
+                ${imageSrc ? `<a href="${imageSrc}" target="_blank" rel="noopener" class="post-image-link"><img src="${imageSrc}" alt="Demo gönderi fotoğrafı" class="post-image"></a>` : ''}
+                <div class="post-actions social-post-actions">
+                    <button type="button" class="mini-action-btn" data-demo-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button>
+                    <button type="button" class="mini-action-btn" data-demo-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>0</span></button>
+                    <span>💬 Yorum yakında</span>
+                </div>
+            </div>`;
+        card.querySelector('.post-text').textContent = safeText;
+        return card;
+    }
+
+    window.addEventListener('click', (event) => {
+        const toggleBtn = event.target.closest('[data-demo-toggle]');
+        if (toggleBtn) {
+            event.preventDefault();
+            toggleDemoButton(toggleBtn);
+        }
+    });
+
+    window.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!form.matches('[data-demo-form], [data-demo-social-form], [data-demo-profile-form], [data-demo-password-form]')) return;
+        event.preventDefault();
+
+        if (form.matches('[data-demo-social-form]')) {
+            const textarea = form.querySelector('textarea');
+            const content = textarea ? textarea.value : '';
+            const preview = document.getElementById('postImagePreview');
+            const imageSrc = preview && preview.src ? preview.src : '';
+            if (!content.trim() && !imageSrc) {
+                showDemoToast('Paylaşmak için metin yaz veya fotoğraf seç.', 'error');
+                return;
+            }
+            const typeInput = document.getElementById('postTypeInput');
+            const feed = document.querySelector('.social-feed');
+            const header = document.querySelector('.feed-header');
+            if (feed && header) {
+                feed.insertBefore(createPostCard(content, imageSrc, typeInput ? typeInput.value : 'genel'), header.nextSibling);
+            }
+            form.reset();
+            if (window.clearSocialImage) window.clearSocialImage();
+            if (window.closeCreateModal) window.closeCreateModal();
+            showDemoToast('Demo gönderin sayfaya eklendi. GitHub sürümünde veri tarayıcı içinde kalır.');
+            return;
+        }
+
+        if (form.matches('[data-demo-password-form]')) {
+            const current = form.querySelector('[name="currentPassword"]');
+            const next = form.querySelector('[name="newPassword"]');
+            if (!current || current.value !== '123456') {
+                showDemoToast('Demo için mevcut şifre: 123456. Yanlış şifreyle yeni şifre kabul edilmez.', 'error');
+                return;
+            }
+            if (!next || next.value.length < 6) {
+                showDemoToast('Yeni şifre en az 6 karakter olmalı.', 'error');
+                return;
+            }
+            form.reset();
+            showDemoToast('Demo şifre kontrolü başarılı. Gerçek işlem canlı sürümde yapılır.');
+            return;
+        }
+
+        if (form.matches('[data-demo-profile-form]')) {
+            showDemoToast('Profil bilgileri demo olarak kaydedildi. GitHub sürümünde sunucuya gönderilmez.');
+            return;
+        }
+
+        if (form.matches('[data-demo-form]')) {
+            if (form.id === 'loginForm' || form.id === 'registerForm' || form.id === 'pageLoginForm' || form.id === 'pageRegisterForm') {
+                if (window.closeAuthModal) window.closeAuthModal();
+                showDemoToast('Demo giriş başarılı. Statik sürümde gerçek üyelik sistemi çalışmaz.');
+            } else {
+                showDemoToast('Form demo olarak çalıştı. GitHub Pages üzerinde sunucu işlemi yoktur.');
+            }
+            form.reset();
+        }
+    });
+})();

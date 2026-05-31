@@ -1,0 +1,392 @@
+/* PROMPTLA 3D oyun modulu - hafif, CDN gerektirmez */
+.arcade-page { overflow-x:hidden; }
+.arcade-shell {
+  width:min(1180px, calc(100% - 32px));
+  margin:112px auto 64px;
+  display:grid;
+  gap:24px;
+}
+.arcade-hero,
+.arcade-stage,
+.arcade-info-panel {
+  border:1px solid rgba(0,217,255,.18);
+  background:linear-gradient(145deg, rgba(8,14,28,.92), rgba(10,16,34,.78));
+  box-shadow:0 24px 90px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+  border-radius:28px;
+}
+.arcade-hero {
+  padding:28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+}
+.arcade-title { display:flex; align-items:center; gap:16px; max-width:760px; }
+.arcade-title .game-emoji { font-size:2.7rem; filter:drop-shadow(0 0 24px rgba(0,217,255,.35)); }
+.arcade-title h1 { margin:4px 0 8px; font-size:clamp(2rem, 5vw, 4.2rem); line-height:.95; }
+.arcade-title p { color:var(--text-muted); margin:0; line-height:1.75; }
+.arcade-hero-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.arcade-stage { padding:18px; overflow:hidden; }
+.arcade-toolbar {
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.arcade-kpis { display:flex; flex-wrap:wrap; gap:10px; }
+.arcade-pill {
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.06);
+  color:#dce7ff;
+  padding:9px 12px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:.9rem;
+}
+.arcade-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.arcade-canvas-shell {
+  position:relative;
+  height:min(62vh, 680px);
+  min-height:520px;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#070b14;
+  touch-action:none;
+  isolation:isolate;
+}
+#arcadeCanvas {
+  width:100%;
+  height:100%;
+  display:block;
+  background:#070b14;
+  cursor:crosshair;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+.arcade-overlay {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:26px;
+  text-align:center;
+  color:#fff;
+  background:radial-gradient(circle at center, rgba(0,217,255,.14), rgba(4,8,15,.72) 58%, rgba(4,8,15,.9));
+  opacity:1;
+  pointer-events:auto;
+  transition:opacity .24s ease;
+  z-index:10;
+}
+.arcade-overlay.hide { opacity:0; pointer-events:none; }
+.arcade-big-play {
+  width:118px;
+  height:118px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.45);
+  color:#fff;
+  font-size:3.2rem;
+  background:linear-gradient(145deg, rgba(0,217,255,.34), rgba(124,92,255,.34));
+  box-shadow:0 0 40px rgba(0,217,255,.28), inset 0 1px 0 rgba(255,255,255,.22);
+  display:grid;
+  place-items:center;
+  padding-left:8px;
+  cursor:pointer;
+}
+.arcade-overlay strong { font-size:clamp(1.6rem, 4vw, 3.1rem); }
+.arcade-overlay span { color:#c9d4ee; max-width:560px; line-height:1.65; }
+.arcade-hud {
+  position:absolute;
+  z-index:5;
+  top:18px;
+  min-width:172px;
+  max-width:240px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(5,9,16,.34);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:14px;
+  color:#f4f8ff;
+  box-shadow:0 16px 40px rgba(0,0,0,.22);
+}
+.arcade-hud-left { left:18px; }
+.arcade-hud-right { right:18px; }
+.arcade-hud h3 {
+  margin:0 0 8px;
+  font-size:.88rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#fff;
+}
+.arcade-hud p,
+.arcade-hud li { margin:0; color:rgba(236,244,255,.8); line-height:1.55; font-size:.82rem; }
+.arcade-hud ul { margin:8px 0 0; padding-left:16px; }
+.arcade-mini-readout { display:grid; gap:6px; margin-top:10px; }
+.arcade-mini-readout span { display:flex; justify-content:space-between; gap:10px; font-size:.85rem; color:rgba(236,244,255,.86); }
+.arcade-touch {
+  position:absolute;
+  z-index:8;
+  inset:auto 18px 18px 18px;
+  display:none;
+  pointer-events:none;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+}
+.arcade-touch button {
+  pointer-events:auto;
+  border:1px solid rgba(255,255,255,.34);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border-radius:999px;
+  min-width:64px;
+  min-height:64px;
+  font-weight:900;
+  letter-spacing:.04em;
+  box-shadow:0 14px 38px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.2);
+  backdrop-filter:blur(12px);
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+}
+.drive-touch-left,
+.drive-touch-right,
+.flight-touch-left,
+.flight-touch-right { display:grid; gap:10px; }
+.drive-touch-left { grid-template-columns:repeat(2, 72px); }
+.drive-touch-left button { min-width:72px; min-height:58px; font-size:.74rem; }
+.drive-touch-right { grid-template-columns:repeat(2, 78px); }
+.drive-touch-right button { min-width:78px; min-height:78px; font-size:1.4rem; }
+.flight-touch-left { grid-template-columns:64px; }
+.flight-touch-right { grid-template-columns:64px 64px 64px; align-items:center; }
+.flight-touch-right button[data-action="up"] { grid-column:2; }
+.flight-touch-right button[data-action="left"] { grid-column:1; }
+.flight-touch-right button[data-action="down"] { grid-column:2; }
+.flight-touch-right button[data-action="right"] { grid-column:3; grid-row:2; }
+
+.flight-touch-right button[data-action="fire"] {
+  grid-column:2;
+  grid-row:3;
+  min-width:76px;
+  min-height:76px;
+  background:rgba(255,84,104,.16);
+}
+.arcade-touch button[data-action="fire"] { font-size:1rem; }
+.arcade-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.arcade-info-panel { padding:24px; }
+.arcade-info-panel h2 { margin:4px 0 10px; }
+.arcade-info-panel p { color:var(--text-muted); line-height:1.75; margin:0; }
+.arcade-info-panel textarea {
+  width:100%;
+  min-height:160px;
+  margin-top:14px;
+  border-radius:16px;
+  border:1px solid rgba(0,217,255,.22);
+  background:rgba(5,10,18,.72);
+  color:#dce7ff;
+  line-height:1.65;
+  padding:14px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.9rem;
+  resize:vertical;
+}
+.arcade-copy-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+.arcade-stage:fullscreen,
+.arcade-stage:-webkit-full-screen {
+  width:100vw;
+  height:100vh;
+  padding:0;
+  border-radius:0;
+  border:0;
+  background:#02040a;
+  display:flex;
+  flex-direction:column;
+}
+.arcade-stage:fullscreen .arcade-toolbar,
+.arcade-stage:-webkit-full-screen .arcade-toolbar {
+  position:absolute;
+  z-index:9;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  margin:0;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(3,7,14,.32);
+  backdrop-filter:blur(14px);
+  border-radius:999px;
+  max-width:calc(100vw - 28px);
+}
+.arcade-stage:fullscreen .arcade-canvas-shell,
+.arcade-stage:-webkit-full-screen .arcade-canvas-shell {
+  min-height:100vh;
+  height:100vh;
+  border-radius:0;
+  border:0;
+}
+.arcade-stage:fullscreen .arcade-touch,
+.arcade-stage:-webkit-full-screen .arcade-touch { display:flex; }
+.arcade-stage:fullscreen .arcade-hud,
+.arcade-stage:-webkit-full-screen .arcade-hud { top:82px; }
+@media (hover:none), (pointer:coarse) {
+  .arcade-touch { display:flex; }
+}
+@media (max-width:920px){
+  .arcade-shell { width:min(100% - 22px, 1180px); margin-top:92px; }
+  .arcade-hero { align-items:flex-start; flex-direction:column; }
+  .arcade-info-grid { grid-template-columns:1fr; }
+  .arcade-canvas-shell { min-height:500px; height:64vh; }
+  .arcade-hud { max-width:190px; min-width:150px; }
+}
+@media (max-width:680px){
+  .arcade-canvas-shell { min-height:420px; height:68vh; }
+  .arcade-toolbar { align-items:flex-start; }
+  .arcade-kpis { gap:8px; }
+  .arcade-pill { font-size:.78rem; padding:8px 10px; }
+  .arcade-hud { display:none; }
+  .arcade-stage:fullscreen .arcade-hud,
+  .arcade-stage:-webkit-full-screen .arcade-hud { display:block; transform:scale(.86); transform-origin:top left; }
+  .arcade-stage:fullscreen .arcade-hud-right,
+  .arcade-stage:-webkit-full-screen .arcade-hud-right { transform-origin:top right; }
+  .arcade-touch { inset:auto 10px 12px 10px; }
+  .drive-touch-left { grid-template-columns:repeat(2, 58px); }
+  .drive-touch-left button { min-width:58px; min-height:50px; font-size:.66rem; }
+  .drive-touch-right { grid-template-columns:repeat(2, 62px); }
+  .drive-touch-right button { min-width:62px; min-height:62px; }
+  .flight-touch-left button,
+  .flight-touch-right button { min-width:54px; min-height:54px; }
+  .flight-touch-right button[data-action="fire"] { min-width:64px; min-height:64px; }
+  .arcade-big-play { width:96px; height:96px; font-size:2.6rem; }
+}
+@media (orientation:landscape) and (max-height:520px){
+  header { display:none; }
+  .arcade-shell { margin:0; width:100%; }
+  .arcade-hero,
+  .arcade-info-grid { display:none; }
+  .arcade-stage { border-radius:0; padding:0; min-height:100vh; }
+  .arcade-toolbar { position:absolute; z-index:9; top:10px; left:10px; right:10px; margin:0; }
+  .arcade-canvas-shell { height:100vh; min-height:100vh; border-radius:0; border:0; }
+}
+
+/* Pixel Horizon PDF redesign: clean UI, integrated dashboard, immersive full-screen canvas */
+.pixel-horizon-page .arcade-hero {
+  background:linear-gradient(145deg, rgba(3,8,7,.95), rgba(8,14,15,.82));
+  border-color:rgba(40,232,40,.24);
+}
+.pixel-horizon-page .arcade-title .game-emoji { filter:drop-shadow(0 0 18px rgba(40,232,40,.32)); }
+.pixel-horizon-page .arcade-title h1 { color:#28e828; letter-spacing:.03em; text-transform:uppercase; }
+.pixel-horizon-page .arcade-stage { border-color:rgba(40,232,40,.22); background:#07100b; }
+.pixel-horizon-page .arcade-canvas-shell { min-height:650px; background:#0b1610; image-rendering:pixelated; }
+.pixel-horizon-page #arcadeCanvas { image-rendering:pixelated; cursor:none; }
+.pixel-horizon-page .arcade-hud { display:none; }
+.pixel-horizon-page .arcade-toolbar {
+  position:absolute;
+  left:50%;
+  top:14px;
+  z-index:9;
+  transform:translateX(-50%);
+  padding:7px 10px;
+  margin:0;
+  border:1px solid rgba(40,232,40,.22);
+  background:rgba(4,9,8,.42);
+  backdrop-filter:blur(10px);
+  border-radius:999px;
+  opacity:.78;
+}
+.pixel-horizon-page .arcade-pill { background:rgba(0,0,0,.24); border-color:rgba(40,232,40,.18); color:#d9ecd8; }
+.pixel-horizon-page .arcade-actions .mini-action-btn,
+.pixel-horizon-page .arcade-hero-actions .mini-action-btn { border-color:rgba(40,232,40,.28); }
+.pixel-horizon-page .arcade-overlay {
+  background:radial-gradient(circle at center, rgba(40,232,40,.12), rgba(2,5,5,.78) 54%, rgba(2,5,5,.92));
+}
+.pixel-horizon-page .arcade-overlay strong { color:#28e828; letter-spacing:.05em; text-transform:uppercase; }
+.pixel-horizon-page .arcade-big-play { background:linear-gradient(145deg, rgba(40,232,40,.25), rgba(0,217,255,.18)); }
+.pixel-horizon-page .arcade-info-panel { border-color:rgba(40,232,40,.16); }
+.pixel-horizon-page .arcade-touch { bottom:74px; }
+.pixel-horizon-page .drive-touch-left button,
+.pixel-horizon-page .drive-touch-right button { border-color:rgba(40,232,40,.32); background:rgba(5,15,10,.38); }
+.pixel-horizon-page .arcade-stage:fullscreen .arcade-toolbar,
+.pixel-horizon-page .arcade-stage:-webkit-full-screen .arcade-toolbar { top:10px; opacity:.62; }
+.pixel-horizon-page .arcade-stage:fullscreen .arcade-canvas-shell,
+.pixel-horizon-page .arcade-stage:-webkit-full-screen .arcade-canvas-shell { min-height:100vh; }
+@media (max-width:680px){
+  .pixel-horizon-page .arcade-canvas-shell { min-height:560px; height:72vh; }
+  .pixel-horizon-page .arcade-toolbar { display:none; }
+}
+@media (orientation:landscape) and (max-height:520px){
+  .pixel-horizon-page .arcade-toolbar { display:none; }
+  .pixel-horizon-page .arcade-touch { bottom:66px; }
+}
+.runner-touch {
+  justify-content:space-between;
+  align-items:flex-end;
+}
+.runner-touch button {
+  min-width:118px;
+  min-height:76px;
+  padding:0 20px;
+  font-size:1rem;
+  background:rgba(255,255,255,.11);
+}
+.runner-touch button[data-action="up"] {
+  background:rgba(0,217,255,.16);
+}
+.runner-touch button[data-action="down"] {
+  background:rgba(124,92,255,.16);
+}
+@media (max-width:680px){
+  .runner-touch button { min-width:96px; min-height:64px; font-size:.9rem; }
+}
+
+/* Chrome Dino-style clean runner layout */
+.dino-runner-page .arcade-stage {
+  background:#ffffff;
+  border-color:rgba(83,83,83,.18);
+}
+.dino-runner-page .arcade-canvas-shell {
+  background:#ffffff;
+  min-height:430px;
+  height:min(52vh, 520px);
+  border-color:rgba(83,83,83,.2);
+  image-rendering:pixelated;
+}
+.dino-runner-page #arcadeCanvas {
+  background:#ffffff;
+  image-rendering:pixelated;
+}
+.dino-runner-page .arcade-hud { display:none; }
+.dino-runner-page .arcade-toolbar {
+  background:rgba(255,255,255,.86);
+  border:1px solid rgba(83,83,83,.18);
+  box-shadow:none;
+}
+.dino-runner-page .arcade-pill {
+  color:#535353;
+  background:#fff;
+  border-color:rgba(83,83,83,.22);
+}
+.dino-runner-page .arcade-overlay {
+  background:rgba(255,255,255,.86);
+  color:#535353;
+}
+.dino-runner-page .arcade-overlay span { color:#666; }
+.dino-runner-page .arcade-big-play {
+  color:#535353;
+  background:#fff;
+  border-color:#535353;
+  box-shadow:none;
+}
+.dino-runner-page .runner-touch button {
+  color:#535353;
+  background:rgba(255,255,255,.76) !important;
+  border-color:rgba(83,83,83,.38);
+}
+@media (orientation:landscape) and (max-height:520px){
+  .dino-runner-page .arcade-toolbar { display:none; }
+  .dino-runner-page .arcade-canvas-shell { height:100vh; min-height:100vh; }
+}

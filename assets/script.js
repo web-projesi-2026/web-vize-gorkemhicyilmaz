@@ -3,8 +3,17 @@ window.toggleMenu = () => {
     const nav = document.querySelector('nav');
 
     if (hamburger && nav) {
-        hamburger.classList.toggle('active');
-        nav.classList.toggle('open');
+        const willOpen = !nav.classList.contains('open');
+        hamburger.classList.toggle('active', willOpen);
+        nav.classList.toggle('open', willOpen);
+
+        if (!willOpen) {
+            document.querySelectorAll('.nav-dropdown.open').forEach((item) => {
+                item.classList.remove('open');
+                item.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+            });
+            document.getElementById('accountDropdown')?.classList.remove('show');
+        }
     }
 };
 
@@ -312,22 +321,23 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ================================
-   GITHUB HTML DEMO DAVRANISLARI
+   HTML YAYIN SURUMU ETKILESIMLERI
 ================================ */
 (function() {
-    function showDemoToast(message, type = 'success') {
-        document.querySelectorAll('.site-toast.demo-generated').forEach((el) => el.remove());
+    function showSiteToast(message, type = 'success') {
+        document.querySelectorAll('.site-toast.site-generated').forEach((el) => el.remove());
         const toast = document.createElement('div');
-        toast.className = 'site-toast demo-generated ' + (type === 'error' ? 'error' : 'success');
+        toast.className = 'site-toast site-generated ' + (type === 'error' ? 'error' : 'success');
         toast.innerHTML = '<span>' + message + '</span><button type="button" aria-label="Kapat">×</button>';
         toast.querySelector('button').addEventListener('click', () => toast.remove());
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3400);
     }
 
-    window.showDemoToast = showDemoToast;
+    window.showSiteToast = showSiteToast;
+    window.showToast = showSiteToast;
 
-    function toggleDemoButton(button) {
+    function toggleSiteButton(button) {
         button.classList.toggle('active');
         const span = button.querySelector('span');
         if (span) {
@@ -341,22 +351,22 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function createPostCard(content, imageSrc, type) {
+    function createPostCard(content, imageSrc, type, customStamp) {
         const card = document.createElement('div');
-        card.className = 'post-card demo-created-post';
-        const safeText = (content || '').trim() || 'Fotoğraflı demo gönderi';
+        card.className = 'post-card site-created-post';
+        const safeText = (content || '').trim() || 'Fotoğraflı gönderi';
         const now = new Date();
-        const stamp = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+        const stamp = customStamp || (now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'}));
         card.innerHTML = `
             <div class="post-avatar"><span>GH</span></div>
             <div class="post-content">
                 <div class="post-author">Görkem Hiçyılmaz <span>• ${stamp}</span></div>
                 <div class="post-badge">${type === 'prompt' ? 'Prompt Paylaşımı' : 'Topluluk Gönderisi'}</div>
                 <p class="post-text"></p>
-                ${imageSrc ? `<a href="${imageSrc}" target="_blank" rel="noopener" class="post-image-link"><img src="${imageSrc}" alt="Demo gönderi fotoğrafı" class="post-image"></a>` : ''}
+                ${imageSrc ? `<a href="${imageSrc}" target="_blank" rel="noopener" class="post-image-link"><img src="${imageSrc}" alt="Gönderi fotoğrafı" class="post-image"></a>` : ''}
                 <div class="post-actions social-post-actions">
-                    <button type="button" class="mini-action-btn" data-demo-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button>
-                    <button type="button" class="mini-action-btn" data-demo-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>0</span></button>
+                    <button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button>
+                    <button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>0</span></button>
                     <span>💬 Yorum yakında</span>
                 </div>
             </div>`;
@@ -364,70 +374,309 @@ window.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.promptlaLoadHtmlPosts) {
+            window.promptlaLoadHtmlPosts(createPostCard);
+        }
+    });
+
     window.addEventListener('click', (event) => {
-        const toggleBtn = event.target.closest('[data-demo-toggle]');
+        const toggleBtn = event.target.closest('[data-site-toggle]');
         if (toggleBtn) {
             event.preventDefault();
-            toggleDemoButton(toggleBtn);
+            toggleSiteButton(toggleBtn);
         }
     });
 
     window.addEventListener('submit', (event) => {
         const form = event.target;
-        if (!form.matches('[data-demo-form], [data-demo-social-form], [data-demo-profile-form], [data-demo-password-form]')) return;
+        if (!form.matches('[data-site-form], [data-site-contact], [data-site-social-form], [data-site-profile-form], [data-site-password-form]')) return;
         event.preventDefault();
 
-        if (form.matches('[data-demo-social-form]')) {
+        if (form.matches('[data-site-social-form]')) {
             const textarea = form.querySelector('textarea');
             const content = textarea ? textarea.value : '';
             const preview = document.getElementById('postImagePreview');
             const imageSrc = preview && preview.src ? preview.src : '';
             if (!content.trim() && !imageSrc) {
-                showDemoToast('Paylaşmak için metin yaz veya fotoğraf seç.', 'error');
+                showSiteToast('Paylaşmak için metin yaz veya fotoğraf seç.', 'error');
                 return;
             }
             const typeInput = document.getElementById('postTypeInput');
             const feed = document.querySelector('.social-feed');
             const header = document.querySelector('.feed-header');
             if (feed && header) {
-                feed.insertBefore(createPostCard(content, imageSrc, typeInput ? typeInput.value : 'genel'), header.nextSibling);
+                const postType = typeInput ? typeInput.value : 'genel';
+                const stamp = new Date().toLocaleDateString('tr-TR') + ' ' + new Date().toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+                feed.insertBefore(createPostCard(content, imageSrc, postType, stamp), header.nextSibling);
+                if (window.promptlaSaveHtmlPost) window.promptlaSaveHtmlPost({content, imageSrc, type: postType, stamp});
             }
             form.reset();
             if (window.clearSocialImage) window.clearSocialImage();
             if (window.closeCreateModal) window.closeCreateModal();
-            showDemoToast('Demo gönderin sayfaya eklendi. GitHub sürümünde veri tarayıcı içinde kalır.');
+            showSiteToast('Gönderin sayfaya eklendi.');
             return;
         }
 
-        if (form.matches('[data-demo-password-form]')) {
+        if (form.matches('[data-site-password-form]')) {
             const current = form.querySelector('[name="currentPassword"]');
             const next = form.querySelector('[name="newPassword"]');
             if (!current || current.value !== '123456') {
-                showDemoToast('Demo için mevcut şifre: 123456. Yanlış şifreyle yeni şifre kabul edilmez.', 'error');
+                showSiteToast('Mevcut şifre doğrulanamadı. Lütfen doğru şifreyi girin.', 'error');
                 return;
             }
             if (!next || next.value.length < 6) {
-                showDemoToast('Yeni şifre en az 6 karakter olmalı.', 'error');
+                showSiteToast('Yeni şifre en az 6 karakter olmalı.', 'error');
                 return;
             }
             form.reset();
-            showDemoToast('Demo şifre kontrolü başarılı. Gerçek işlem canlı sürümde yapılır.');
+            showSiteToast('Şifre güncelleme formu doğrulandı.');
             return;
         }
 
-        if (form.matches('[data-demo-profile-form]')) {
-            showDemoToast('Profil bilgileri demo olarak kaydedildi. GitHub sürümünde sunucuya gönderilmez.');
+        if (form.matches('[data-site-profile-form]')) {
+            showSiteToast('Profil bilgileri kaydedildi.');
             return;
         }
 
-        if (form.matches('[data-demo-form]')) {
+        if (form.matches('[data-site-contact]')) {
+            if (window.promptlaOpenMail) window.promptlaOpenMail(form);
+            showSiteToast('E-posta istemcin açılıyor. Mesajını kontrol edip gönderebilirsin.');
+            form.reset();
+            return;
+        }
+
+        if (form.matches('[data-site-form]')) {
             if (form.id === 'loginForm' || form.id === 'registerForm' || form.id === 'pageLoginForm' || form.id === 'pageRegisterForm') {
                 if (window.closeAuthModal) window.closeAuthModal();
-                showDemoToast('Demo giriş başarılı. Statik sürümde gerçek üyelik sistemi çalışmaz.');
+                showSiteToast('Giriş formu başarıyla gönderildi.');
             } else {
-                showDemoToast('Form demo olarak çalıştı. GitHub Pages üzerinde sunucu işlemi yoktur.');
+                showSiteToast('Form başarıyla gönderildi.');
             }
             form.reset();
         }
     });
+})();
+
+
+/* HTML yayin surumu: sosyal gonderileri tarayici icinde kalici tut */
+(function() {
+    const STORAGE_KEY = 'promptla_html_posts';
+
+    function readPosts() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+        catch (e) { return []; }
+    }
+
+    function savePosts(posts) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts.slice(0, 20))); }
+        catch (e) { /* localStorage doluysa sessiz gec */ }
+    }
+
+    window.promptlaSaveHtmlPost = function(post) {
+        const posts = readPosts();
+        posts.unshift(post);
+        savePosts(posts);
+    };
+
+    window.promptlaLoadHtmlPosts = function(createPostCard) {
+        const feed = document.querySelector('.social-feed');
+        const header = document.querySelector('.feed-header');
+        if (!feed || !header || typeof createPostCard !== 'function') return;
+        readPosts().reverse().forEach((post) => {
+            feed.insertBefore(createPostCard(post.content, post.imageSrc, post.type, post.stamp), header.nextSibling);
+        });
+    };
+
+    window.promptlaOpenMail = function(form) {
+        const name = form.querySelector('[name="ad_soyad"]')?.value || '';
+        const email = form.querySelector('[name="eposta"]')?.value || '';
+        const subject = form.querySelector('[name="konu"]')?.value || 'PROMPTLA geri bildirim';
+        const msg = form.querySelector('[name="mesaj"]')?.value || '';
+        const body = `Ad Soyad: ${name}\nE-posta: ${email}\n\nMesaj:\n${msg}`;
+        const mailto = `mailto:promptladigital@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+    };
+})();
+
+
+/* ================================
+   PROMPTLA PLATFORM EKLERI
+================================ */
+function promptlaIsLoggedIn(){ return localStorage.getItem('promptlaLoggedIn') === '1'; }
+function promptlaLoginMock(){ localStorage.setItem('promptlaLoggedIn','1'); showSiteToast('Giriş başarılı. Firebase bağlanınca gerçek oturum kullanılacak.'); }
+function promptlaLogout(){ localStorage.removeItem('promptlaLoggedIn'); showSiteToast('Çıkış yapıldı.'); }
+window.promptlaLogout = promptlaLogout;
+function requirePromptAuth(){ if(!promptlaIsLoggedIn()){ localStorage.setItem('promptlaReturnUrl', location.href); showSiteToast('Promptlara erişmek için önce giriş yapmalısın.'); setTimeout(()=>{ location.href = (location.pathname.includes('/pages/')?'':'pages/') + 'giris-kayit.html'; }, 700); return false; } return true; }
+window.openPromptCategoryModal = function(){ document.getElementById('promptCategoryModal')?.classList.add('show'); };
+window.closePromptCategoryModal = function(){ document.getElementById('promptCategoryModal')?.classList.remove('show'); };
+
+
+const PROMPTLA_TOOL_LINKS = {
+  'ChatGPT':'https://chatgpt.com/',
+  'Gemini':'https://gemini.google.com/',
+  'Google Gemini':'https://gemini.google.com/',
+  'Claude':'https://claude.ai/',
+  'Microsoft Copilot':'https://copilot.microsoft.com/',
+  'Copilot':'https://copilot.microsoft.com/',
+  'Midjourney':'https://www.midjourney.com/',
+  'Kimi':'https://www.kimi.com/en',
+  'Kimi AI':'https://www.kimi.com/en',
+  'Meshy AI':'https://www.meshy.ai/',
+  'Tripo AI':'https://www.tripo3d.ai/',
+  'Luma AI':'https://lumalabs.ai/dream-machine',
+  'Luma Dream Machine':'https://lumalabs.ai/dream-machine',
+  'Spline':'https://spline.design/',
+  'Blender + AI eklentileri':'https://www.blender.org/',
+  'DALL·E':'https://openai.com/index/dall-e-3/',
+  'Leonardo AI':'https://leonardo.ai/',
+  'Adobe Firefly':'https://www.adobe.com/products/firefly.html',
+  'Runway':'https://runwayml.com/',
+  'Pika':'https://pika.art/',
+  'Kling':'https://klingai.com/',
+  'Kaiber':'https://kaiber.ai/',
+  'Notion AI':'https://www.notion.com/product/ai',
+  'Grammarly':'https://www.grammarly.com/',
+  'Microsoft Word':'https://www.microsoft.com/microsoft-365/word',
+  'Google Docs':'https://docs.google.com/',
+  'Canva Docs':'https://www.canva.com/docs/',
+  'GitHub Copilot':'https://github.com/features/copilot',
+  'Cursor':'https://cursor.com/',
+  'HTML Canvas':'https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API',
+  'JavaScript':'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+};
+
+const PROMPTLA_CATEGORY_INFO = {
+  all: { title:'Tüm prompt kategorileri', desc:'Burada farklı üretim türleri için hazırlanmış promptları inceleyebilir, kopyalayabilir ve kendi ihtiyacına göre düzenleyebilirsin.', tools:['ChatGPT','Gemini','Claude','Midjourney','Runway','Meshy AI','Tripo AI'] },
+  gorsel: { title:'Görsel oluşturma ve düzenleme promptları', desc:'Görsel üretimi için sahne, ışık, kamera, stil, kompozisyon ve çıktı formatı net yazılmalıdır. Görsel düzenleme promptlarında korunacak ve değişecek alanları ayrıca belirtmek gerekir.', tools:['DALL·E','Midjourney','Leonardo AI','Gemini','Adobe Firefly'] },
+  video: { title:'Video promptları', desc:'Video üretiminde sahne süresi, kamera hareketi, ışık, karakter hareketi, geçiş ve son kare açıkça tanımlanmalıdır. Bu alanı daha sonra kendi araç listene göre düzenleyebilirsin.', tools:['Runway','Pika','Kling','Luma Dream Machine','Kaiber'] },
+  oyun: { title:'Oyun promptları', desc:'Oyun kategorisi oynanabilir HTML Canvas oyunlarına yönlendirir. Oyun sayfalarında açıklama ve detaylı oluşturma promptu aynı şekilde korunur.', tools:['HTML Canvas','JavaScript','ChatGPT','Claude','Gemini'] },
+  '3d': { title:'3D modelleme ve 3D yazıcı promptları', desc:'Bu kategori 3D yazıcıya gönderilebilecek veya 3D sahnelerde kullanılabilecek model fikirleri için ayrılmıştır. Model üretirken ölçü, malzeme hissi, destek ihtiyacı, kenar yumuşatma, baskı yönü ve dosya formatı gibi bilgiler prompta eklenmelidir. Burayı daha sonra kendi 3D modelleme notlarınla genişletebilirsin.', tools:['Meshy AI','Tripo AI','Luma AI','Spline','Blender + AI eklentileri'] },
+  odev: { title:'Ödev düzenleme araçları ve akademik çalışma promptları', desc:'Bu kategori PDF oluşturma, Word raporu hazırlama, uzun metni özetleme, sunum planlama, kaynakça düzenleme ve akademik dil iyileştirme gibi işlemler için ayrılmıştır. Burayı daha sonra kendi derslerine ve teslim kurallarına göre düzenleyebilirsin.', tools:['ChatGPT','Claude','Gemini','Microsoft Word','Google Docs','Canva Docs','Notion AI'] },
+  kod: { title:'Kodlama, hata ayıklama ve geliştirme promptları', desc:'Kod promptlarında dosya yapısı, hata mesajı, beklenen sonuç ve değiştirilmemesi gereken alanlar net yazılmalıdır.', tools:['ChatGPT','Claude','Gemini','GitHub Copilot','Cursor'] },
+  metin: { title:'Metin, içerik ve sosyal medya promptları', desc:'Duyuru, açıklama, e-posta, sosyal medya metni ve blog içeriği gibi yazı üretimlerinde hedef kitle, ton ve uzunluk belirtilmelidir.', tools:['ChatGPT','Claude','Gemini','Notion AI','Grammarly'] }
+};
+function updatePromptCategoryIntro(cat){
+  const info = PROMPTLA_CATEGORY_INFO[cat] || PROMPTLA_CATEGORY_INFO.all;
+  const title = document.getElementById('categoryTitle');
+  const desc = document.getElementById('categoryDescription');
+  const tools = document.getElementById('categoryTools');
+  if(title) title.textContent = info.title;
+  if(desc) desc.textContent = info.desc;
+  if(tools) tools.innerHTML = (info.tools||[]).map(t=>{ const url = PROMPTLA_TOOL_LINKS[t] || '#'; return `<a href="${url}" target="_blank" rel="noopener">${t}<span>↗</span></a>`; }).join('');
+}
+window.filterPrompts = function(cat){
+  if(cat === 'oyun') { location.href = 'games.html'; return; }
+  document.querySelectorAll('.prompt-card-modern[data-category]').forEach(card=>{ card.classList.toggle('is-hidden', cat !== 'all' && card.dataset.category !== cat); });
+  updatePromptCategoryIntro(cat);
+};
+window.selectPromptType = function(cat){
+  closePromptCategoryModal();
+  if(cat === 'oyun') { location.href = 'games.html'; return; }
+  filterPrompts(cat);
+  const url = new URL(location.href);
+  url.searchParams.set('cat', cat);
+  history.replaceState(null, '', url.toString());
+  document.getElementById('prompt-library')?.scrollIntoView({behavior:'smooth', block:'start'});
+};
+function initPromptCategoryFromUrl(){
+  const params = new URLSearchParams(location.search);
+  const cat = params.get('cat') || (location.hash ? location.hash.replace('#','') : 'all');
+  if(document.querySelector('.prompt-card-modern[data-category]')) filterPrompts(cat);
+}
+document.addEventListener('DOMContentLoaded', initPromptCategoryFromUrl);
+
+
+// Kopyalama gibi kritik prompt aksiyonları için giriş kontrolü
+window.addEventListener('click', function(e){
+  const protectedBtn = e.target.closest('[data-requires-auth]');
+  if(protectedBtn && !promptlaIsLoggedIn()){ e.preventDefault(); e.stopPropagation(); requirePromptAuth(); }
+}, true);
+
+// Statik auth formları Firebase'e geçişe hazır şekilde localStorage kullanır
+window.addEventListener('submit', function(e){
+  if(e.target.matches('[data-site-form]')){
+    e.preventDefault();
+    promptlaLoginMock();
+    const returnUrl = localStorage.getItem('promptlaReturnUrl');
+    if(returnUrl){ localStorage.removeItem('promptlaReturnUrl'); setTimeout(()=>{ location.href = returnUrl; }, 500); }
+  }
+});
+
+// Reddit tarzı iç içe yorumlar: localStorage tabanlı, Firebase'e taşınmaya hazır veri modeli
+let activeCommentTarget = 'general';
+let activeCommentTitle = 'Prompt yorumları';
+window.openCommentPanel = function(target, title){
+  activeCommentTarget = target || 'general'; activeCommentTitle = title || 'Prompt yorumları';
+  const p = document.getElementById('promptComments'); if(!p) return;
+  document.getElementById('commentsTitle').textContent = activeCommentTitle + ' yorumları';
+  document.getElementById('commentTarget').value = activeCommentTarget;
+  p.classList.add('show'); p.scrollIntoView({behavior:'smooth', block:'start'}); renderPromptComments();
+};
+window.closeCommentPanel = function(){ document.getElementById('promptComments')?.classList.remove('show'); };
+function getPromptComments(){ try{return JSON.parse(localStorage.getItem('promptlaComments')||'[]');}catch(e){return [];} }
+function setPromptComments(list){ localStorage.setItem('promptlaComments', JSON.stringify(list)); }
+window.addPromptComment = function(e){
+  e.preventDefault(); if(!requirePromptAuth()) return;
+  const text = document.getElementById('commentText').value.trim(); if(!text) return;
+  const parentId = document.getElementById('commentParent').value || null;
+  const list = getPromptComments();
+  list.push({id:'c'+Date.now(), target:activeCommentTarget, parentId, text, user:'Görkem', date:new Date().toLocaleDateString('tr-TR')});
+  setPromptComments(list); e.target.reset(); document.getElementById('commentParent').value=''; renderPromptComments();
+};
+window.replyPromptComment = function(id){ document.getElementById('commentParent').value = id; document.getElementById('commentText').focus(); };
+function renderPromptComments(){
+  const wrap = document.getElementById('commentsList'); if(!wrap) return;
+  const all = getPromptComments().filter(c=>c.target===activeCommentTarget);
+  if(!all.length){ wrap.innerHTML = '<p class="site-muted">Henüz yorum yok. İlk yorumu sen yaz.</p>'; return; }
+  const byParent = {};
+  all.forEach(c=>{ const key=c.parentId||'root'; (byParent[key] ||= []).push(c); });
+  function node(parent, depth){ return (byParent[parent]||[]).map(c=>`<div class="comment-node depth-${Math.min(depth,3)}"><div class="comment-meta">${c.user} • ${c.date}</div><p>${c.text.replace(/[<>&]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[m]))}</p><div class="comment-actions"><button class="mini-action-btn" onclick="replyPromptComment('${c.id}')">Yanıtla</button></div>${node(c.id, depth+1)}</div>`).join(''); }
+  wrap.innerHTML = node('root',0);
+}
+
+// Admin panel sekmeleri
+window.addEventListener('click', function(e){
+  const btn = e.target.closest('[data-admin-tab]'); if(!btn) return;
+  const tab = btn.dataset.adminTab;
+  document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('active', b===btn));
+  document.querySelectorAll('.admin-tab').forEach(p=>p.classList.toggle('active', p.id === 'admin-' + tab));
+});
+
+
+/* Improved mobile Promptlar dropdown interaction: close siblings and keep state clean. */
+(function () {
+    const setupPromptMenuAnimation = () => {
+        document.querySelectorAll('.nav-dropdown-toggle').forEach((toggle) => {
+            if (toggle.dataset.promptDropdownAnimationReady === '1') return;
+            toggle.dataset.promptDropdownAnimationReady = '1';
+            toggle.setAttribute('aria-expanded', 'false');
+
+            toggle.addEventListener('click', (event) => {
+                const dropdown = toggle.closest('.nav-dropdown');
+                if (!dropdown || !window.matchMedia('(max-width: 768px)').matches) return;
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                const willOpen = !dropdown.classList.contains('open');
+                document.querySelectorAll('.nav-dropdown.open').forEach((item) => {
+                    if (item !== dropdown) {
+                        item.classList.remove('open');
+                        const otherToggle = item.querySelector('.nav-dropdown-toggle');
+                        if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                dropdown.classList.toggle('open', willOpen);
+                toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            });
+        });
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupPromptMenuAnimation);
+    } else {
+        setupPromptMenuAnimation();
+    }
 })();

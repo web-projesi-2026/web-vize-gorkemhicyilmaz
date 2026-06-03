@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ <url><loc>https://promptla.example/index.html</loc></url>
+ <url><loc>https://promptla.example/pages/prompt.html</loc></url>
+ <url><loc>https://promptla.example/pages/games.html</loc></url>
+ <url><loc>https://promptla.example/pages/ai-arastirma.html</loc></url>
+ <url><loc>https://promptla.example/pages/chatgpt.html</loc></url>
+ <url><loc>https://promptla.example/pages/claude.html</loc></url>
+ <url><loc>https://promptla.example/pages/copilot.html</loc></url>
+ <url><loc>https://promptla.example/pages/gemini.html</loc></url>
+ <url><loc>https://promptla.example/pages/kimi.html</loc></url>
+ <url><loc>https://promptla.example/pages/midjourney.html</loc></url>
+ <url><loc>https://promptla.example/pages/openai.html</loc></url>
+ <url><loc>https://promptla.example/games/endless-drive.html</loc></url>
+ <url><loc>https://promptla.example/games/aim-reflex.html</loc></url>
+ <url><loc>https://promptla.example/games/space-dodge.html</loc></url>
+ <url><loc>https://promptla.example/games/neon-tunnel.html</loc></url>
+ <url><loc>https://promptla.example/games/snake.html</loc></url>
+ <url><loc>https://promptla.example/games/pacman.html</loc></url>
+ <url><loc>https://promptla.example/games/hockey.html</loc></url>
+ <url><loc>https://promptla.example/games/football.html</loc></url>
+</urlset>

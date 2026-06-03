@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Meshy AI - PROMPTLA</title>
+ <meta name="description" content="3D modelleme yapay zeka aracı ve 3D yazıcı promptları.">
+ <link rel="stylesheet" href="../assets/style.css?v=20260525-clean-ai">
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <style>:root{--bg-dark:#060b14;--bg-secondary:#0c1220;--card-bg:rgba(16,22,36,.82);--text-main:#edf3ff;--text-muted:#98a6c7;--accent:#00d9ff;--accent-2:#7c5cff;}body.site-shell::before{background:linear-gradient(rgba(255,255,255,.02),rgba(255,255,255,.02)),url("../images/urun2.webp") center/cover no-repeat;opacity:.06;}</style>
+ <link rel="manifest" href="../site.webmanifest">
+ 
+</head>
+<body class="site-shell">
+<header>
+ <div class="logo"><a href="../index.html" aria-label="Ana sayfaya dön">PROMPT<span>LA</span></a></div>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+ <nav>
+  <ul id="menu">
+   <li><a href="../index.html">Ana Sayfa</a></li>
+   <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+   <li class="nav-dropdown">
+    <a href="../pages/prompt.html" class="nav-dropdown-toggle">Promptlar</a>
+    <div class="nav-submenu"><a href="../pages/prompt.html?cat=gorsel">Görsel Promptları</a><a href="../pages/prompt.html?cat=video">Video Promptları</a><a href="../pages/games.html">Oyunlar</a><a href="../pages/prompt.html?cat=3d">3D Modelleme</a><a href="../pages/prompt.html?cat=odev">Ödev Düzenleme</a><a href="../pages/prompt.html?cat=kod">Kod Promptları</a><a href="../pages/prompt.html?cat=metin">Metin / İçerik</a></div>
+   </li>
+   <li><a href="../pages/sosyal.html" class="nav-highlight">Sosyal</a></li>
+   <li class="account-menu">
+    <button type="button" class="account-btn account-btn-with-photo" onclick="toggleDropdown(event)">
+     <span>Profilim</span><span class="account-avatar-sm">GH</span>
+    </button>
+    <div class="account-dropdown" id="accountDropdown">
+     <a href="../pages/profil.html">Profilim</a>
+     <a href="../pages/giris-kayit.html">Giriş / Kayıt</a>
+     <a href="#" onclick="showSiteToast('Oturum menüsü hazır.'); return false;">Çıkış Yap</a>
+    </div>
+   </li>
+  </ul>
+ </nav>
+</header>
+<div class="ai-model-tabbar"><a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a><a href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini</a><a href="https://claude.ai/" target="_blank" rel="noopener">Claude</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Copilot</a><a href="https://www.midjourney.com/" target="_blank" rel="noopener">Midjourney</a><a href="https://www.kimi.com/en" target="_blank" rel="noopener">Kimi</a><a href="https://www.meshy.ai/" target="_blank" rel="noopener">Meshy AI</a></div>
+
+<section class="detail-section model-detail-section">
+ <div class="detail-header model-detail-header"><span class="eyebrow">3D MODELLEME VE YAPAY ZEKA</span><h1>Meshy AI</h1><p>Metin veya görsel fikirlerinden 3D model üretmeye odaklanan; oyun, ürün taslağı ve 3D yazıcı ön hazırlığı gibi alanlarda fikir geliştirmek için kullanılabilecek bir yapay zeka aracıdır.</p><div class="detail-actions"><a href="https://www.meshy.ai/" target="_blank" rel="noopener" class="official-link-btn">Meshy sitesine git ↗</a><a href="../index.html#ai-cards" class="back-btn inline-back-btn">Diğer modelleri gör</a></div></div>
+ <div class="detail-content model-detail-grid"><div class="detail-card model-info-card"><h3>Genel Bakış</h3><p>3D modelleme araçları, metinle tarif edilen nesneleri veya referans görselleri 3D forma dönüştürmeyi amaçlar. PROMPTLA içinde bu bölüm, özellikle 3D yazıcıya gönderilecek fikirlerin nasıl tarif edileceğini öğretmek için konumlandırıldı.</p></div><div class="detail-card model-info-card"><h3>3D Yazıcı İçin Dikkat</h3><p>Model promptlarında ölçü, destek ihtiyacı, tek parça basım, yuvarlatılmış köşe, kalınlık ve çıktı formatı gibi teknik ayrıntılar belirtilmelidir. Üretilen model baskıdan önce mutlaka slicer programında kontrol edilmelidir.</p></div><div class="detail-card model-info-card"><h3>Prompt Örneği</h3><p>“3D yazıcıda basılabilecek, destek ihtiyacı az olan, düşük poligonlu, yuvarlatılmış köşelere sahip küçük bir masaüstü telefon standı modeli oluştur. Model sade, dayanıklı ve tek parça basılabilir olsun. STL formatına uygun olacak şekilde tasarla.”</p></div><div class="detail-card model-info-card"><h3>PROMPTLA Kullanım Önerisi</h3><p>3D model promptlarında sadece nesneyi değil, kullanım amacını, boyut aralığını, baskı kolaylığını ve malzeme beklentisini de belirt. Böylece çıktı daha uygulanabilir hale gelir.</p></div></div>
+</section>
+
+
+<footer id="contact"><div class="footer-about"><h3>PROMPTLA Hakkında</h3><p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p></div><div class="footer-bottom"><p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p><div class="socials"><a href="https://www.instagram.com/gorkem.hc/" target="_blank" rel="noopener" class="social-link">Instagram</a><a href="https://x.com/GorkemHc" target="_blank" rel="noopener" class="social-link">X</a><a href="https://www.linkedin.com/in/gorkemhicyilmaz" target="_blank" rel="noopener" class="social-link">LinkedIn</a></div></div></footer>
+<div id="authModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeAuthModal()">&times;</span><div class="auth-tabs"><button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button><button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button></div><form id="loginForm" class="auth-form active" data-site-form><div class="divider"><span>klasik giriş</span></div><input type="email" name="loginEmail" placeholder="E-posta adresiniz" required><input type="password" name="loginPassword" placeholder="Şifreniz" required><button type="submit" class="btn btn-full">Giriş Yap</button></form><form id="registerForm" class="auth-form" data-site-form><div class="divider"><span>yeni hesap oluştur</span></div><input type="text" name="registerName" placeholder="Adınız Soyadınız" required><input type="email" name="registerEmail" placeholder="E-posta adresiniz" required><input type="password" name="registerPassword" placeholder="Şifre belirleyin" required><button type="submit" class="btn btn-full">Kayıt Ol</button></form></div></div>
+<script src="../assets/script.js?v=20260525-clean-ai"></script>
+
+</body>
+</html>

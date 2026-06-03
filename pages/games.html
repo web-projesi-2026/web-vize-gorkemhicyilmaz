@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Oyunlar - PROMPTLA</title>
+ <meta name="description" content="PROMPTLA mini oyunlar ve oyun prompt eğitimi.">
+ <link rel="stylesheet" href="../assets/style.css?v=20260529-dino-clean">
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <style>:root{--bg-dark:#060b14;--bg-secondary:#0c1220;--card-bg:rgba(16,22,36,.82);--text-main:#edf3ff;--text-muted:#98a6c7;--accent:#00d9ff;--accent-2:#7c5cff;}body.site-shell::before{background:linear-gradient(rgba(255,255,255,.02),rgba(255,255,255,.02)),url("../images/urun2.webp") center/cover no-repeat;opacity:.06;}</style>
+ <link rel="manifest" href="../site.webmanifest">
+</head>
+<body class="site-shell">
+<header>
+ <div class="logo"><a href="../index.html" aria-label="Ana sayfaya dön">PROMPT<span>LA</span></a></div>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+ <nav>
+  <ul id="menu">
+   <li><a href="../index.html">Ana Sayfa</a></li>
+   <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+   <li class="nav-dropdown">
+    <a href="../pages/prompt.html" class="nav-dropdown-toggle">Promptlar</a>
+    <div class="nav-submenu"><a href="../pages/prompt.html?cat=gorsel">Görsel Promptları</a><a href="../pages/prompt.html?cat=video">Video Promptları</a><a href="../pages/games.html">Oyunlar</a><a href="../pages/prompt.html?cat=3d">3D Modelleme</a><a href="../pages/prompt.html?cat=odev">Ödev Düzenleme</a><a href="../pages/prompt.html?cat=kod">Kod Promptları</a><a href="../pages/prompt.html?cat=metin">Metin / İçerik</a></div>
+   </li>
+   <li><a href="../pages/sosyal.html" class="nav-highlight">Sosyal</a></li>
+   <li class="account-menu">
+    <button type="button" class="account-btn account-btn-with-photo" onclick="toggleDropdown(event)">
+     <span>Profilim</span><span class="account-avatar-sm">GH</span>
+    </button>
+    <div class="account-dropdown" id="accountDropdown">
+     <a href="../pages/profil.html">Profilim</a>
+     <a href="../pages/giris-kayit.html">Giriş / Kayıt</a>
+     <a href="#" onclick="showSiteToast('Oturum menüsü hazır.'); return false;">Çıkış Yap</a>
+    </div>
+   </li>
+  </ul>
+ </nav>
+</header>
+<section class="detail-section game-hub-section">
+ <div class="detail-header model-detail-header"><span class="eyebrow">OYUNLA ÖĞRENME MODÜLÜ</span><h1>Profesyonel Mini Oyun Koleksiyonu</h1><p>Mobil yatay kullanım, tam ekran deneyimi ve prompt eğitim mantığı ile geliştirilen yeni oyun modülü. Her oyunda oyun bilgisi, kontroller ve prompt mantığı yer alır.</p></div>
+ <div class="game-hub-grid">
+  <article class="game-hub-card featured-game-card"><div class="game-emoji">🦖</div><span class="eyebrow">YENİ RETRO RUNNER</span><h3>Pixel Dino Runner</h3><p>Chrome Dino mantığından ilham alan özgün sonsuz koşu: zıpla, eğil, engellerden kaç ve rekor kır.</p><a class="card-btn" href="../games/endless-drive.html">Oyunu Aç</a></article>
+  <article class="game-hub-card featured-game-card"><div class="game-emoji">🎯</div><span class="eyebrow">YENİ AIM TRAINER</span><h3>Reflex Aim Arena</h3><p>Aim Lab hissi veren 3D refleks arenasında hedefleri vurarak isabet ve combo test et.</p><a class="card-btn" href="../games/aim-reflex.html">Oyunu Aç</a></article>
+  <article class="game-hub-card featured-game-card"><div class="game-emoji">🚀</div><span class="eyebrow">YENİ PRO SPACE</span><h3>Uzay Kaçış Rotası</h3><p>Ateş sistemi kaldırılmış, klasik asteroit kaçış mantığına döndürülmüş uzay oyunu.</p><a class="card-btn" href="../games/space-dodge.html">Oyunu Aç</a></article>
+  <article class="game-hub-card featured-game-card"><div class="game-emoji">🔷</div><span class="eyebrow">3D REFLEKS</span><h3>Neon Tünel Geçişi</h3><p>Yaklaşan neon kapı boşluklarından geçmeye dayalı hızlı ve akıcı bir refleks oyunu.</p><a class="card-btn" href="../games/neon-tunnel.html">Oyunu Aç</a></article>
+  <article class="game-hub-card"><div class="game-emoji">🐍</div><h3>Yılan Oyunu</h3><p>Klasik yılan mekaniği, yem toplama, skor ve çarpışma kontrolü.</p><a class="card-btn" href="../games/snake.html">Oyunu Aç</a></article>
+  <article class="game-hub-card"><div class="game-emoji">🟡</div><h3>Pacman Tarzı Labirent</h3><p>Labirentte noktaları topla, hayaleti takip ettirme ve puan kazan.</p><a class="card-btn" href="../games/pacman.html">Oyunu Aç</a></article>
+  <article class="game-hub-card"><div class="game-emoji">🏒</div><h3>2D Hava Hokeyi</h3><p>Paddle ile diski karşı kaleye gönder, yapay rakibe karşı skor yap.</p><a class="card-btn" href="../games/hockey.html">Oyunu Aç</a></article>
+  <article class="game-hub-card"><div class="game-emoji">⚽</div><h3>Futbol Penaltı</h3><p>Şut yönünü seç, kaleciyi geç ve penaltı skorunu artır.</p><a class="card-btn" href="../games/football.html">Oyunu Aç</a></article>
+ </div>
+ <div class="game-learning-panel"><span class="eyebrow">PROMPT EĞİTİMİ</span><h2>Oyunlar nasıl promptlanır?</h2><p>Her oyunda önce deneyim hedefi, sonra mekanikler, sonra mobil/tam ekran desteği ve en sonda performans optimizasyonu tarif edilir. Böylece yapay zekadan daha kontrollü ve profesyonel çıktı alınır.</p><a class="btn" href="games.html">Oyun promptlarını incele</a></div>
+</section>
+<footer id="contact"><div class="footer-about"><h3>PROMPTLA Hakkında</h3><p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p></div><div class="footer-bottom"><p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p><div class="socials"><a href="https://www.instagram.com/gorkem.hc/" target="_blank" rel="noopener" class="social-link">Instagram</a><a href="https://x.com/GorkemHc" target="_blank" rel="noopener" class="social-link">X</a><a href="https://www.linkedin.com/in/gorkemhicyilmaz" target="_blank" rel="noopener" class="social-link">LinkedIn</a></div></div></footer>
+<script src="../assets/script.js?v=20260529-dino-clean"></script>
+</body>
+</html>

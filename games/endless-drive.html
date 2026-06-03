@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+ <title>Pixel Dino Runner - PROMPTLA</title>
+ <meta name="description" content="Pixel Dino Runner: Chrome Dino mantığından ilham alan özgün, hızlı ve mobil uyumlu sonsuz koşu oyunu.">
+ <link rel="stylesheet" href="../assets/style.css?v=20260529-dino-clean">
+ <link rel="stylesheet" href="../assets/games.css?v=20260529-dino-clean">
+ <link rel="stylesheet" href="../assets/arcade3d.css?v=20260529-dino-clean">
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <link rel="manifest" href="../site.webmanifest">
+</head>
+<body class="site-shell game-page arcade-page dino-runner-page" data-arcade-game="endless-drive">
+<header>
+ <div class="logo"><a href="../index.html" aria-label="Ana sayfaya dön">PROMPT<span>LA</span></a></div>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+ <nav>
+  <ul id="menu">
+   <li><a href="../index.html">Ana Sayfa</a></li>
+   <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+   <li class="nav-dropdown">
+    <a href="../pages/prompt.html" class="nav-dropdown-toggle">Promptlar</a>
+    <div class="nav-submenu"><a href="../pages/prompt.html?cat=gorsel">Görsel Promptları</a><a href="../pages/prompt.html?cat=video">Video Promptları</a><a href="../pages/games.html">Oyunlar</a><a href="../pages/prompt.html?cat=3d">3D Modelleme</a><a href="../pages/prompt.html?cat=odev">Ödev Düzenleme</a><a href="../pages/prompt.html?cat=kod">Kod Promptları</a><a href="../pages/prompt.html?cat=metin">Metin / İçerik</a></div>
+   </li>
+   <li><a href="../pages/sosyal.html" class="nav-highlight">Sosyal</a></li>
+   <li class="account-menu">
+    <button type="button" class="account-btn account-btn-with-photo" onclick="toggleDropdown(event)">
+     <span>Profilim</span><span class="account-avatar-sm">GH</span>
+    </button>
+    <div class="account-dropdown" id="accountDropdown">
+     <a href="../pages/profil.html">Profilim</a>
+     <a href="../pages/giris-kayit.html">Giriş / Kayıt</a>
+     <a href="#" onclick="showSiteToast('Oturum menüsü hazır.'); return false;">Çıkış Yap</a>
+    </div>
+   </li>
+  </ul>
+ </nav>
+</header>
+<main class="arcade-shell">
+ <section class="arcade-hero">
+  <div class="arcade-title"><span class="game-emoji">🦖</span><div><span class="eyebrow">RETRO PIXEL ENDLESS RUNNER</span><h1>Pixel Dino Runner</h1><p>Chrome Dino oyun mantığına çok yakın, sade siyah-beyaz sonsuz koşu. Zıpla, eğil, kaktüs ve uçan engellerden kaç, hızlandıkça skorunu yükselt.</p></div></div>
+  <div class="arcade-hero-actions"><a class="mini-action-btn" href="../pages/games.html">← Oyunlara Dön</a><button class="mini-action-btn" id="arcadeFullscreen">⛶ Tam Ekran</button></div>
+ </section>
+ <section class="arcade-stage" id="arcadeStage">
+  <div class="arcade-toolbar">
+   <div class="arcade-kpis"><span class="arcade-pill">Skor: <b id="arcadeScore">0</b></span><span class="arcade-pill">Rekor: <b id="arcadeHigh">0</b></span><span class="arcade-pill">Durum: <b id="arcadeStatus">Dino Runner</b></span><span class="arcade-pill">Hız: <b id="arcadeSpeed">-</b></span></div>
+   <div class="arcade-actions"><button class="mini-action-btn" id="arcadeStart">Başlat</button><button class="mini-action-btn" id="arcadePause">Duraklat</button><button class="mini-action-btn" id="arcadeRestart">Tekrar</button></div>
+  </div>
+  <div class="arcade-canvas-shell">
+   <canvas id="arcadeCanvas" aria-label="Pixel Dino Runner oyun alanı"></canvas>
+   <div id="arcadeOverlay" class="arcade-overlay"><button type="button" id="arcadeBigStart" class="arcade-big-play" aria-label="Oyunu başlat">▶</button><strong>PIXEL DINO RUNNER</strong><span>Space, W veya ↑ ile zıpla; S veya ↓ ile eğil. Başlat ve rekorunu kır.</span></div>
+   <aside class="arcade-hud arcade-hud-left"><h3>KOŞU BİLGİSİ</h3><div class="arcade-mini-readout"><span><b>Hız</b><em data-readout="speed">0 km/s</em></span><span><b>Mesafe</b><em data-readout="distance">0 m</em></span><span><b>Durum</b><em data-readout="steer">Hazır</em></span><span><b>Mod</b><em data-readout="road">Sonsuz koşu</em></span></div></aside>
+   <aside class="arcade-hud arcade-hud-right"><h3>KONTROLLER</h3><p>PC: Space, W veya ↑ ile zıpla. S veya ↓ ile eğil. Mobilde büyük ZIPLA ve EĞİL butonları bulunur. Engellere çarparsan oyun biter.</p></aside>
+   <div class="arcade-touch runner-touch" aria-label="Mobil runner kontrolleri">
+     <button data-action="up">ZIPLA</button>
+     <button data-action="down">EĞİL</button>
+    </div>
+  </div>
+ </section>
+ <section class="arcade-info-grid">
+  <article class="arcade-info-panel"><span class="eyebrow">OYUN MANTIĞI</span><h2>Pixel Dino Runner nasıl çalışır?</h2><p>Bu sürüm sade beyaz arka plan, gri zemin çizgisi, koşan dino silueti, kaktüs kümeleri ve uçan engel mantığıyla klasik offline runner hissini verir. Karakter otomatik koşar, hız zamanla artar, oyuncu zıplama ve eğilme ile engellerden kaçar. Skor ve rekor localStorage ile saklanır.</p></article>
+  <article class="arcade-info-panel"><div class="arcade-copy-head"><div><span class="eyebrow">PROMPT FİKRİ</span><h2>Bu oyunu üretmek için prompt</h2></div><button class="mini-action-btn" onclick="copyArcadePrompt(this)">📋 Promptu Kopyala</button></div><p>Bu prompt, Chrome Dino mantığından ilham alan özgün bir sonsuz koşu oyunu üretmek için doğrudan kullanılabilir.</p><textarea readonly>HTML, CSS ve JavaScript ile çalışan, harici kütüphane gerektirmeyen, Canvas tabanlı özgün bir Pixel Dino Runner oyunu oluştur. Oyun Chrome Dino mantığından ilham alsın ama Google'ın orijinal kodlarını, görsellerini veya markasını kullanmasın. Retro pixel-art siyah beyaz / gri tonlu bir sonsuz koşu oyunu olsun. Oyuncu karakteri otomatik koşsun; Space, W veya yukarı ok ile zıplasın, S veya aşağı ok ile eğilsin. Kaktüs, kaya, sandık ve uçan kuş tarzı engeller rastgele gelsin. Hız zamanla artsın, skor ve rekor localStorage ile saklansın. Mobilde büyük ZIPLA ve EĞİL butonları, tam ekran desteği, büyük başlat simgesi, oyun bitti ekranı ve tekrar başlatma olsun. Sade bulutlar, gri zemin çizgileri, kaktüs kümeleri, uçan engeller ve akıcı requestAnimationFrame döngüsü ekle. Kod temiz, optimize ve statik hosting uyumlu olsun.</textarea></article>
+ </section>
+</main>
+<footer id="contact"><div class="footer-about"><h3>PROMPTLA Hakkında</h3><p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p></div><div class="footer-bottom"><p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p><div class="socials"><a href="https://www.instagram.com/gorkem.hc/" target="_blank" rel="noopener" class="social-link">Instagram</a><a href="https://x.com/GorkemHc" target="_blank" rel="noopener" class="social-link">X</a><a href="https://www.linkedin.com/in/gorkemhicyilmaz" target="_blank" rel="noopener" class="social-link">LinkedIn</a></div></div></footer>
+<script src="../assets/script.js?v=20260529-dino-clean"></script>
+<script src="../assets/arcade3d.js?v=20260529-dino-clean"></script>
+</body>
+</html>

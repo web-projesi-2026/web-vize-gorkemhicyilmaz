@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sosyal - PROMPTLA</title>
+ <meta name="description" content="PROMPTLA ile yapay zeka modellerini keşfet, prompt yazımını öğren ve örnek içeriklerle geliş.">
+ <link rel="stylesheet" href="../assets/style.css?v=20260525-arcade3d">
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <style>
+:root {
+ --bg-dark: #060b14;
+ --bg-secondary: #0c1220;
+ --card-bg: rgba(16, 22, 36, 0.82);
+ --text-main: #edf3ff;
+ --text-muted: #98a6c7;
+ --accent: #00d9ff;
+ --accent-2: #7c5cff;
+}
+body.site-shell::before {
+ background: linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)), url("../images/urun2.webp") center center / cover no-repeat;
+ opacity: 0.06;
+}
+</style>
+ 
+    <link rel="manifest" href="../site.webmanifest">
+</head>
+<body class="site-shell">
+<header>
+ <div class="logo"><a href="../index.html" aria-label="Ana sayfaya dön">PROMPT<span>LA</span></a></div>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+ </div>
+ <nav>
+  <ul id="menu">
+   <li><a href="../index.html">Ana Sayfa</a></li>
+   <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+   <li class="nav-dropdown">
+    <a href="../pages/prompt.html" class="nav-dropdown-toggle">Promptlar</a>
+    <div class="nav-submenu"><a href="../pages/prompt.html?cat=gorsel">Görsel Promptları</a><a href="../pages/prompt.html?cat=video">Video Promptları</a><a href="../pages/games.html">Oyunlar</a><a href="../pages/prompt.html?cat=3d">3D Modelleme</a><a href="../pages/prompt.html?cat=odev">Ödev Düzenleme</a><a href="../pages/prompt.html?cat=kod">Kod Promptları</a><a href="../pages/prompt.html?cat=metin">Metin / İçerik</a></div>
+   </li>
+   <li><a href="../pages/sosyal.html" class="nav-highlight">Sosyal</a></li>
+   <li class="account-menu">
+    <button type="button" class="account-btn account-btn-with-photo" onclick="toggleDropdown(event)">
+     <span>Profilim</span><span class="account-avatar-sm">GH</span>
+    </button>
+    <div class="account-dropdown" id="accountDropdown">
+     <a href="../pages/profil.html">Profilim</a>
+     <a href="../pages/giris-kayit.html">Giriş / Kayıt</a>
+     <a href="#" onclick="showSiteToast('Oturum menüsü hazır.'); return false;">Çıkış Yap</a>
+    </div>
+   </li>
+  </ul>
+ </nav>
+</header>
+<div class="social-container"><div class="social-sidebar"><button class="create-fab" onclick="window.openCreateModal()"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Oluştur</button></div><div class="social-feed"><div class="feed-header"><h2>Topluluk Akışı</h2><button class="create-fab mobile-create-fab" onclick="window.openCreateModal()" type="button"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Oluştur</button></div>
+ <div class="post-card"><div class="post-avatar"><span>GH</span></div><div class="post-content"><div class="post-author">Görkem Hiçyılmaz <span>• 09.05.2026 17:20</span></div><div class="post-badge">Topluluk Gönderisi</div><p class="post-text">PROMPTLA HTML sürümü yayınlanmaya hazır şekilde düzenlendi. Fotoğraflı gönderi oluşturma alanı bu sayfada kullanılabilir.</p><a href="../images/urun2.webp" target="_blank" rel="noopener" class="post-image-link"><img src="../images/urun2.webp" alt="Gönderi fotoğrafı" class="post-image"></a><div class="post-actions social-post-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>2</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>1</span></button><span>💬 Yorum yakında</span></div></div></div>
+ <div class="post-card"><div class="post-avatar"><span>AI</span></div><div class="post-content"><div class="post-author">PROMPTLA Ekibi <span>• 09.05.2026 16:45</span></div><div class="post-badge">Prompt Paylaşımı</div><p class="post-text">Bir prompt yazarken bağlam, görev, format ve sınırlama adımlarını ayrı ayrı belirtmek sonuç kalitesini ciddi şekilde yükseltir.</p><div class="post-actions social-post-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>5</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>3</span></button><span>💬 Yorum yakında</span></div></div></div>
+</div><div class="social-right"></div></div>
+<div id="createModal" class="modal"><div class="modal-content create-modal-content social-create-modal"><span class="close-btn" onclick="window.closeCreateModal()">&times;</span><div class="social-create-header"><span class="eyebrow" style="margin-bottom:8px;">SOSYAL PAYLAŞIM</span><h2>Yeni Gönderi</h2><p>Metin ve fotoğraf ekleyerek paylaşım oluşturabilirsin.</p></div><form class="social-create-form" data-site-social-form><input type="hidden" name="post_type" id="postTypeInput" value="prompt"><div class="post-type-switch"><button type="button" class="post-type-btn active" data-type="prompt">Prompt Paylaşımı</button><button type="button" class="post-type-btn" data-type="genel">Topluluk Gönderisi</button></div><textarea name="post_content" rows="7" placeholder="Paylaşımını yaz..." class="social-create-textarea"></textarea><div class="social-image-upload"><label for="postImageInput" class="social-image-upload-box"><input type="file" name="post_image" id="postImageInput" accept="image/jpeg,image/png,image/webp"><span class="social-image-upload-icon">＋</span><span class="social-image-upload-title">Fotoğraf ekle</span><small id="postImageFileName">JPG, PNG veya WEBP. Maksimum 5 MB.</small></label><div class="social-image-preview-wrap" id="postImagePreviewWrap" aria-live="polite"><img src="" alt="Seçilen gönderi fotoğrafı önizlemesi" id="postImagePreview"><button type="button" class="social-image-clear" onclick="window.clearSocialImage()">Fotoğrafı kaldır</button></div></div><div class="social-modal-actions"><button type="submit" class="social-submit-btn">PAYLAŞ</button></div></form></div></div>
+<footer id="contact">
+ <div class="footer-about">
+  <h3>PROMPTLA Hakkında</h3>
+  <p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p>
+  <p>Sitemiz geliştirilme aşamasındadır. Hata, öneri ve geri bildirimleriniz için promptladigital@gmail.com adresine mail gönderebilir veya sosyal medya düğmelerini kullanabilirsiniz.</p>
+ </div>
+ <div class="footer-bottom">
+  <p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p>
+  <div class="socials">
+   <a href="https://www.instagram.com/gorkem.hc/" target="_blank" rel="noopener" class="social-link">Instagram</a>
+   <a href="https://x.com/GorkemHc" target="_blank" rel="noopener" class="social-link">X</a>
+   <a href="https://www.linkedin.com/in/gorkemhicyilmaz" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+  </div>
+ </div>
+</footer><div id="authModal" class="modal">
+ <div class="modal-content">
+  <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+  <div class="auth-tabs">
+   <button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button>
+   <button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button>
+  </div>
+  <form id="loginForm" class="auth-form active" data-site-form>
+   <div class="divider"><span>klasik giriş</span></div>
+   <input type="email" name="loginEmail" placeholder="E-posta adresiniz" required>
+   <input type="password" name="loginPassword" placeholder="Şifreniz" required>
+   <button type="submit" class="btn btn-full">Giriş Yap</button>
+  </form>
+  <form id="registerForm" class="auth-form" data-site-form>
+   <div class="divider"><span>yeni hesap oluştur</span></div>
+   <input type="text" name="registerName" placeholder="Adınız Soyadınız" required>
+   <input type="email" name="registerEmail" placeholder="E-posta adresiniz" required>
+   <input type="password" name="registerPassword" placeholder="Şifre belirleyin" required>
+   <button type="submit" class="btn btn-full">Kayıt Ol</button>
+  </form>
+ </div>
+</div>
+<script src="../assets/script.js?v=20260525-arcade3d"></script>
+</body>
+</html>

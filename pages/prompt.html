@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Promptlar - PROMPTLA</title>
+ <link rel="stylesheet" href="../assets/style.css?v=20260525-clean-ai">
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="site-shell prompt-page">
+<header>
+ <div class="logo"><a href="../index.html" aria-label="Ana sayfaya dön">PROMPT<span>LA</span></a></div>
+ <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+ <nav>
+  <ul id="menu">
+   <li><a href="../index.html">Ana Sayfa</a></li>
+   <li><a href="../index.html#ai-cards">Yapay Zeka Modelleri</a></li>
+   <li class="nav-dropdown">
+    <a href="../pages/prompt.html" class="nav-dropdown-toggle">Promptlar</a>
+    <div class="nav-submenu"><a href="../pages/prompt.html?cat=gorsel">Görsel Promptları</a><a href="../pages/prompt.html?cat=video">Video Promptları</a><a href="../pages/games.html">Oyunlar</a><a href="../pages/prompt.html?cat=3d">3D Modelleme</a><a href="../pages/prompt.html?cat=odev">Ödev Düzenleme</a><a href="../pages/prompt.html?cat=kod">Kod Promptları</a><a href="../pages/prompt.html?cat=metin">Metin / İçerik</a></div>
+   </li>
+   <li><a href="../pages/sosyal.html" class="nav-highlight">Sosyal</a></li>
+   <li class="account-menu">
+    <button type="button" class="account-btn account-btn-with-photo" onclick="toggleDropdown(event)">
+     <span>Profilim</span><span class="account-avatar-sm">GH</span>
+    </button>
+    <div class="account-dropdown" id="accountDropdown">
+     <a href="../pages/profil.html">Profilim</a>
+     <a href="../pages/giris-kayit.html">Giriş / Kayıt</a>
+     <a href="#" onclick="showSiteToast('Oturum menüsü hazır.'); return false;">Çıkış Yap</a>
+    </div>
+   </li>
+  </ul>
+ </nav>
+</header>
+<section class="detail-section prompt-library-section" id="prompt-library">
+ <div class="detail-header model-detail-header">
+  <span class="eyebrow">PROMPT KÜTÜPHANESİ</span>
+  <h1>Kategorilere Göre Promptlar</h1>
+  <p>Promptlar artık oyun, görsel, video, 3D modelleme, ödev düzenleme, kod ve metin kategorilerine ayrıldı. Üst menüde Promptlar üzerine gelerek ilgili kategoriye ulaşabilirsin.</p>
+  <div class="prompt-toolbar"><button class="btn" onclick="openPromptCategoryModal()">Kategori Seç</button><button class="btn btn-secondary" onclick="filterPrompts('all')">Tümünü Göster</button><a class="btn btn-secondary" href="games.html">Oyunları Oyna</a></div>
+ </div>
+ <div class="container-wide">
+  <div class="prompt-category-strip">
+   <button class="category-pill" onclick="selectPromptType('gorsel')">🎨 Görsel</button>
+   <button class="category-pill" onclick="selectPromptType('video')">🎬 Video</button>
+   <button class="category-pill" onclick="location.href='games.html'">🎮 Oyunlar</button>
+   <button class="category-pill" onclick="selectPromptType('3d')">🧊 3D Modelleme</button>
+   <button class="category-pill" onclick="selectPromptType('odev')">📚 Ödev Düzenleme</button>
+   <button class="category-pill" onclick="selectPromptType('kod')">💻 Kod</button>
+   <button class="category-pill" onclick="selectPromptType('metin')">✍️ Metin</button>
+  </div>
+  <section id="categoryIntro" class="category-intro-panel">
+   <span class="eyebrow" id="categoryEyebrow">KATEGORİ BİLGİSİ</span>
+   <h2 id="categoryTitle">Tüm prompt kategorileri</h2>
+   <p id="categoryDescription">Burada farklı üretim türleri için hazırlanmış promptları inceleyebilir, kopyalayabilir ve kendi ihtiyacına göre düzenleyebilirsin.</p>
+   <div id="categoryTools" class="tool-chip-grid"></div>
+  </section>
+  <div class="prompt-grid-modern" id="game-prompts">
+   <article class="prompt-card-modern" data-category="gorsel" id="prompt-1">
+ <div class="prompt-card-image"><img src="../images/urun1.webp" alt="Ürün Tanıtım Görseli" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Görsel oluşturma</span><h3>Ürün Tanıtım Görseli</h3><p class="site-muted">Midjourney, DALL·E, Leonardo AI veya Gemini gibi araçlarla kullanılabilecek ürün tanıtım görseli promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Teknoloji ürününü koyu arka plan üzerinde, neon mavi ışıklarla, profesyonel reklam fotoğrafı gibi göster. Ürünün temel özelliklerini infografik çizgilerle belirt. Kompozisyon temiz, modern ve sosyal medya paylaşımına uygun olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>1</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>3</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-1','Ürün Tanıtım Görseli')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="gorsel" id="prompt-2">
+ <div class="prompt-card-image"><img src="../images/prompt1.webp" alt="Fotoğraf Düzenleme Promptu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Görsel düzenleme</span><h3>Fotoğraf Düzenleme Promptu</h3><p class="site-muted">Var olan bir görseli dönüştürme, arka plan temizleme veya stil değiştirme için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Yüklediğim görselde ana karakterin yüz yapısını ve temel pozunu koru. Arka planı sade, profesyonel ve koyu teknoloji temalı hale getir. Renkleri daha canlı yap, ışığı yumuşat ve sonucu sosyal medya profil görseli gibi düzenle.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>2</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>4</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-2','Fotoğraf Düzenleme Promptu')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="video" id="prompt-3">
+ <div class="prompt-card-image"><img src="../images/urun2.webp" alt="Kısa Tanıtım Videosu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Video promptu</span><h3>Kısa Tanıtım Videosu</h3><p class="site-muted">Runway, Pika, Kling veya Luma gibi video araçları için sahne/kamera promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">PROMPTLA adlı yapay zeka eğitim platformu için 8 saniyelik modern tanıtım videosu oluştur. Koyu lacivert teknoloji arka planı, neon mavi ışık geçişleri, ekranda prompt kartları ve yapay zeka model ikonları görünsün. Kamera yavaşça ileri yaklaşsın, son karede PROMPTLA logosu belirsin.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>3</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>5</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-3','Kısa Tanıtım Videosu')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="video" id="prompt-4">
+ <div class="prompt-card-image"><img src="../images/img_69f08ee8ef35f7.66127168.webp" alt="Ürün Animasyon Videosu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Video düzenleme</span><h3>Ürün Animasyon Videosu</h3><p class="site-muted">Ürün görselini hareketli tanıtıma dönüştürmek için örnek prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Tek bir ürün görselini kullanarak 6 saniyelik sinematik bir ürün tanıtım videosu hazırla. Ürün kendi etrafında hafifçe dönsün, arka planda mavi neon çizgiler ve teknik bilgi kartları belirsin. Video pürüzsüz, gerçekçi ve profesyonel reklam kalitesinde olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>4</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>6</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-4','Ürün Animasyon Videosu')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-5">
+ <div class="prompt-card-image"><img src="../images/img_69ea9b6541a469.84268754.webp" alt="Yılan Oyunu Oluşturma" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Oyun promptu</span><h3>Yılan Oyunu Oluşturma</h3><p class="site-muted">HTML Canvas ile yılan oyunu üretmek için ayrıntılı prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML, CSS ve JavaScript kullanarak Canvas tabanlı yılan oyunu oluştur. Yılan mobil dokunmatik butonlar ve klavye ile kontrol edilsin. Duvara çarpınca ölmesin; sağdan çıkınca soldan, soldan çıkınca sağdan devam etsin. Sadece kendi gövdesine değerse oyun bitsin. Koyu tema, neon efektler, skor sistemi ve tekrar başlat butonu ekle.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>7</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-5','Yılan Oyunu Oluşturma')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-6">
+ <div class="prompt-card-image"><img src="../images/img_69f04dd26f50c7.32701932.webp" alt="Pacman Tarzı Labirent" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Oyun promptu</span><h3>Pacman Tarzı Labirent</h3><p class="site-muted">Labirent, nokta toplama ve hayalet takip sistemi için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Canvas tabanlı Pacman tarzı basit labirent oyunu yap. Oyuncu noktaları toplasın, hayalet yavaşça takip etsin. Tüm noktalar toplanınca kazanma, hayalete yakalanınca oyun bitti ekranı çıksın. Mobil yön butonları, koyu arka plan, neon duvarlar ve skor sistemi ekle.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>1</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>8</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-6','Pacman Tarzı Labirent')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-7">
+ <div class="prompt-card-image"><img src="../images/img_69f08ee8ef35f7.66127168.webp" alt="2D Hava Hokeyi" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Oyun promptu</span><h3>2D Hava Hokeyi</h3><p class="site-muted">Paddle, disk, fizik ve yapay rakip sistemi için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML Canvas ile 2D hava hokeyi oyunu oluştur. Oyuncu alttaki paddleı fare veya dokunma ile kontrol etsin. Rakip paddle basit yapay zekayla diski takip etsin. Disk duvarlardan sekmeli, aynı hizada takılmaması için minimum dikey hız korunmalı, maksimum hız sınırı uygulanmalı ve ilk 5 skora ulaşan kazansın.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>2</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>9</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-7','2D Hava Hokeyi')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-8">
+ <div class="prompt-card-image"><img src="../images/prompt1.webp" alt="Futbol Penaltı Oyunu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Oyun promptu</span><h3>Futbol Penaltı Oyunu</h3><p class="site-muted">Penaltı, kaleci seçimi ve skor sistemi için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML, CSS ve JavaScript ile basit bir futbol penaltı oyunu oluştur. Oyuncu kaleye tıklayarak şut yönünü seçsin. Kaleci rastgele sola, ortaya veya sağa atlasın. Top yavaş animasyonla kaleye gitsin. 5 atış sonunda skor gösterilsin, tekrar oyna butonu ve mobil uyumlu tasarım olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>3</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>10</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-8','Futbol Penaltı Oyunu')">💬 Yorum</button></div>
+ </div>
+</article>
+
+<article class="prompt-card-modern" data-category="oyun" id="prompt-16">
+ <div class="prompt-card-image"><img src="../images/urun2.webp" alt="Pixel Dino Runner Promptu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Retro runner promptu</span><h3>Pixel Dino Runner</h3><p class="site-muted">Chrome Dino mantığından ilham alan özgün pixel-art sonsuz koşu oyunu promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML, CSS ve JavaScript ile çalışan, harici kütüphane gerektirmeyen, Canvas tabanlı özgün bir Pixel Dino Runner oyunu oluştur. Oyun Chrome Dino mantığından ilham alsın ama Google'ın orijinal kodlarını, görsellerini veya markasını kullanmasın. Retro pixel-art siyah beyaz / gri tonlu bir sonsuz koşu oyunu olsun. Oyuncu karakteri otomatik koşsun; Space, W veya yukarı ok ile zıplasın, S veya aşağı ok ile eğilsin. Kaktüs, kaya, sandık ve uçan kuş tarzı engeller rastgele gelsin. Hız zamanla artsın, skor ve rekor localStorage ile saklansın. Mobilde büyük ZIPLA ve EĞİL butonları, tam ekran desteği, büyük başlat simgesi, oyun bitti ekranı ve tekrar başlatma olsun. Parallax bulutlar, zemin çizgileri, toz efekti, gece/gündüz geçişi ve akıcı requestAnimationFrame döngüsü ekle. Kod temiz, optimize ve statik hosting uyumlu olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>4</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>13</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-16','Pixel Dino Runner')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-17">
+ <div class="prompt-card-image"><img src="../images/img_69f04dd26f50c7.32701932.webp" alt="Reflex Aim Arena Promptu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">3D oyun promptu</span><h3>Reflex Aim Arena</h3><p class="site-muted">Aim Lab tarzı refleks ve nişan antrenmanı için profesyonel FPS mini oyunu promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML, CSS ve JavaScript ile çalışan, Aim Lab hissi veren profesyonel bir 3D refleks/aim trainer oyunu oluştur. Oyun Canvas üzerinde çalışsın ve derinlik hissi olan fütüristik bir antrenman odası kullansın. Hedefler ekranda rastgele noktalarda kısa süreli doğsun; oyuncu mouse veya dokunmatik ile nişangâhı taşıyıp hedefleri vursun. İsabet oranı, combo, aktif hedef sayısı, süre ve skor gösterilsin. Mobilde yatay tam ekran, yön kontrolleri ve ateş düğmesi; PC'de mouse, Space ve WASD desteği olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>2</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>9</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-17','Reflex Aim Arena')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-18">
+ <div class="prompt-card-image"><img src="../images/img_69f08ee8ef35f7.66127168.webp" alt="Uzay Kaçış Rotası Promptu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">3D oyun promptu</span><h3>Uzay Kaçış Rotası</h3><p class="site-muted">Ateş sistemi kaldırılmış, klasik asteroit kaçış mantığına döndürülmüş uzay oyunu promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">HTML, CSS ve JavaScript kullanarak Canvas üzerinde çalışan, 3D hissi veren klasik bir uzay kaçış oyunu oluştur. Oyuncu küçük bir roketi WASD veya ok tuşlarıyla sağa, sola, yukarı ve aşağı yönlendirsin. Asteroitler perspektifle oyuncuya doğru yaklaşsın; oyuncu asteroitlerden kaçsın. Çarpışınca kalkan azalsın, kalkan sıfırlanınca oyun bitsin. Ateş etme, mermi veya asteroit patlatma sistemi olmasın. Mobilde yatay tam ekran desteği ve dokunmatik yön kontrolleri bulunsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>1</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>8</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-18','Uzay Kaçış Rotası')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="oyun" id="prompt-19">
+ <div class="prompt-card-image"><img src="../images/prompt1.webp" alt="Neon Tünel Geçişi Promptu" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">3D oyun promptu</span><h3>Neon Tünel Geçişi</h3><p class="site-muted">Yaklaşan kapı boşluklarından geçilen refleks oyunu promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Canvas tabanlı, 3D hissi veren neon tünel refleks oyunu oluştur. Oyuncu küçük bir aracı sağa, sola, yukarı ve aşağı hareket ettirsin. Oyuncuya doğru yaklaşan neon kapılar ve geçilmesi gereken boşluklar olsun. Boşluktan geçerse skor artsın, çarparsa ısı yükselsin ve ısı 100 olunca oyun bitsin. Tam ekran, mobil yatay ekran desteği, WASD/ok tuşları ve dokunmatik kontroller ekle.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>3</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>11</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-19','Neon Tünel Geçişi')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="3d" id="prompt-9">
+ <div class="prompt-card-image"><img src="../images/urun1.webp" alt="3D Yazıcı Telefon Standı" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">3D modelleme promptu</span><h3>3D Yazıcı Telefon Standı</h3><p class="site-muted">Meshy AI, Tripo AI veya benzeri 3D model araçları için yazıcı uyumlu model promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">3D yazıcıda basılabilecek, tek parça, destek ihtiyacı az, yuvarlatılmış köşelere sahip masaüstü telefon standı modeli oluştur. Model sade, dayanıklı, düşük poligonlu ve STL/OBJ formatına dönüştürülebilir olmalı. Ölçüleri yaklaşık 10 cm genişlik, 8 cm yükseklik, 7 cm derinlik olacak şekilde düşün.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>4</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>11</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-9','3D Yazıcı Telefon Standı')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="3d" id="prompt-10">
+ <div class="prompt-card-image"><img src="../images/urungorsel3.webp" alt="3D Maskot Figür" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">3D modelleme promptu</span><h3>3D Maskot Figür</h3><p class="site-muted">Metinden 3D maskot veya obje üretmek için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">PROMPTLA markası için küçük, sevimli ve 3D yazıcıda basılabilir bir robot maskot modeli oluştur. Keskin çıkıntılar olmasın, dengeli ayakta durabilsin, tek parça basılmaya uygun olsun. Stil modern, sade ve teknoloji temalı olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>12</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-10','3D Maskot Figür')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="odev" id="prompt-11">
+ <div class="prompt-card-image"><img src="../images/urungorsel3.webp" alt="PDF Ödev Düzenleme" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Ödev aracı promptu</span><h3>PDF Ödev Düzenleme</h3><p class="site-muted">ChatGPT, Gemini, Claude, Notion AI, Canva Docs veya Word araçlarıyla ödev düzenleme için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Elimdeki ödev metnini akademik ama anlaşılır bir dille düzenle. Başlık, giriş, gelişme, sonuç ve kaynakça düzenini oluştur. Yazım hatalarını düzelt, cümleleri daha akıcı hale getir ve çıktı sonunda PDF olarak düzenlenebilecek temiz bir metin yapısı ver.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>1</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>13</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-11','PDF Ödev Düzenleme')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="odev" id="prompt-12">
+ <div class="prompt-card-image"><img src="../images/urun1.webp" alt="Word Rapor Taslağı" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Ödev aracı promptu</span><h3>Word Rapor Taslağı</h3><p class="site-muted">Word veya Google Docs için rapor oluşturma promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Aşağıdaki konu için Word belgesi düzeninde rapor taslağı hazırla. Kapak bilgisi, içindekiler, giriş, ana başlıklar, sonuç ve kaynakça bölümleri olsun. Başlık hiyerarşisini net kur, tablo veya madde listesi gereken yerleri belirt.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>2</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>14</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-12','Word Rapor Taslağı')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="odev" id="prompt-13">
+ <div class="prompt-card-image"><img src="../images/urun1.webp" alt="Metin Özetleme ve Sunum" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Ödev aracı promptu</span><h3>Metin Özetleme ve Sunum</h3><p class="site-muted">Uzun metni özetleme ve sunum maddelerine çevirme promptu.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Aşağıdaki uzun metni önce 10 maddelik kısa özete dönüştür, sonra 5 slaytlık sunum planı hazırla. Her slayt için başlık, kısa açıklama ve konuşmacı notu ekle. Dil sade, öğrenci sunumuna uygun ve anlaşılır olsun.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>3</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>15</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-13','Metin Özetleme ve Sunum')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="kod" id="prompt-14">
+ <div class="prompt-card-image"><img src="../images/img_69f04dd26f50c7.32701932.webp" alt="Kod Hata Ayıklama" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Kod promptu</span><h3>Kod Hata Ayıklama</h3><p class="site-muted">Kod sorunlarını analiz ettirmek için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">Aşağıdaki kodu incele. Önce hatanın olası nedenlerini listele, sonra hangi satırların değişmesi gerektiğini açıkla, en son düzeltilmiş kodu ver. Kodun mevcut tasarımını ve dosya yapısını mümkün olduğunca koru.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>4</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>16</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-14','Kod Hata Ayıklama')">💬 Yorum</button></div>
+ </div>
+</article>
+<article class="prompt-card-modern" data-category="metin" id="prompt-15">
+ <div class="prompt-card-image"><img src="../images/img_69f08ee8ef35f7.66127168.webp" alt="Sosyal Medya Metni" loading="lazy"></div>
+ <div class="prompt-card-content"><span class="prompt-chip">Metin promptu</span><h3>Sosyal Medya Metni</h3><p class="site-muted">Paylaşım, duyuru veya açıklama yazısı üretmek için prompt.</p>
+  <div class="prompt-code-box collapsed"><div class="prompt-code-head"><strong>Örnek Prompt</strong><button type="button" class="mini-action-btn prompt-copy-btn" data-requires-auth onclick="window.copyPrompt(this)">📋 Kodu Kopyala</button></div><p class="prompt-scroll-text prompt-text-collapsible">PROMPTLA projesi için kısa, profesyonel ve samimi bir sosyal medya duyurusu yaz. Platformun yapay zeka araçlarını tanıttığını, prompt yazmayı öğrettiğini ve topluluk paylaşımı sunduğunu belirt. Metin 3 paragrafı geçmesin.</p><button type="button" class="prompt-expand-btn" onclick="window.togglePromptText(this)">Daha fazla …</button></div>
+  <div class="profile-action-row prompt-card-actions"><button type="button" class="mini-action-btn" data-site-toggle data-active-text="❤️ Beğenildi" data-passive-text="🤍 Beğen">🤍 Beğen <span>0</span></button><button type="button" class="mini-action-btn" data-site-toggle data-active-text="⭐ Kaydedildi" data-passive-text="☆ Kaydet">☆ Kaydet <span>17</span></button><button type="button" class="mini-action-btn" onclick="openCommentPanel('prompt-15','Sosyal Medya Metni')">💬 Yorum</button></div>
+ </div>
+</article>
+  </div>
+  <div id="promptComments" class="comments-panel"><div class="comments-head"><div><span class="eyebrow">YORUMLAR</span><h3 id="commentsTitle">Prompt yorumları</h3></div><button class="mini-action-btn" onclick="closeCommentPanel()">Kapat</button></div><form class="comment-form" onsubmit="addPromptComment(event)"><textarea id="commentText" placeholder="Yorumunu yaz..." required></textarea><input type="hidden" id="commentTarget" value="general"><input type="hidden" id="commentParent" value=""><button class="btn" type="submit">Yorum Yap</button></form><div id="commentsList" class="comments-list"></div></div>
+  <a href="../index.html" class="back-btn" style="margin-top:50px;">← Ana Sayfaya Dön</a>
+ </div>
+</section>
+<div id="promptCategoryModal" class="modal prompt-category-modal"><div class="modal-content prompt-category-content"><span class="close-btn" onclick="closePromptCategoryModal()">&times;</span><span class="eyebrow">PROMPT TÜRÜ SEÇ</span><h2>Hangi prompt kategorisini incelemek istiyorsun?</h2><div class="prompt-type-grid"><button onclick="selectPromptType('gorsel')"><strong>🎨 Görsel Promptu</strong><span>Görsel oluşturma ve düzenleme</span></button><button onclick="selectPromptType('video')"><strong>🎬 Video Promptu</strong><span>Sahne, kamera ve kurgu tarifleri</span></button><button onclick="location.href='games.html'"><strong>🎮 Oyunlar</strong><span>Oynanabilir mini oyun sayfaları</span></button><button onclick="selectPromptType('3d')"><strong>🧊 3D Modelleme</strong><span>3D yazıcıya uygun model fikirleri</span></button><button onclick="selectPromptType('odev')"><strong>📚 Ödev Düzenleme Araçları</strong><span>PDF, Word, özet ve rapor süreçleri</span></button><button onclick="selectPromptType('kod')"><strong>💻 Kod Promptu</strong><span>Analiz, hata ayıklama ve geliştirme</span></button><button onclick="selectPromptType('metin')"><strong>✍️ Metin / İçerik</strong><span>Duyuru, açıklama ve sosyal medya</span></button></div></div></div>
+
+<footer id="contact"><div class="footer-about"><h3>PROMPTLA Hakkında</h3><p>PROMPTLA, yapay zeka araçlarını tanıtan, prompt yazım mantığını örneklerle öğreten ve kullanıcıların üretimlerinden ilham almasını sağlayan modern bir öğrenme platformudur.</p></div><div class="footer-bottom"><p>&copy; 2026 PROMPTLA. Tüm Hakları Saklıdır.</p><div class="socials"><a href="https://www.instagram.com/gorkem.hc/" target="_blank" rel="noopener" class="social-link">Instagram</a><a href="https://x.com/GorkemHc" target="_blank" rel="noopener" class="social-link">X</a><a href="https://www.linkedin.com/in/gorkemhicyilmaz" target="_blank" rel="noopener" class="social-link">LinkedIn</a></div></div></footer>
+<div id="authModal" class="modal"><div class="modal-content"><span class="close-btn" onclick="closeAuthModal()">&times;</span><div class="auth-tabs"><button class="tab-btn active" id="tab-login" onclick="switchAuthTab('login')">Giriş Yap</button><button class="tab-btn" id="tab-register" onclick="switchAuthTab('register')">Kayıt Ol</button></div><form id="loginForm" class="auth-form active" data-site-form><div class="divider"><span>klasik giriş</span></div><input type="email" name="loginEmail" placeholder="E-posta adresiniz" required><input type="password" name="loginPassword" placeholder="Şifreniz" required><button type="submit" class="btn btn-full">Giriş Yap</button></form><form id="registerForm" class="auth-form" data-site-form><div class="divider"><span>yeni hesap oluştur</span></div><input type="text" name="registerName" placeholder="Adınız Soyadınız" required><input type="email" name="registerEmail" placeholder="E-posta adresiniz" required><input type="password" name="registerPassword" placeholder="Şifre belirleyin" required><button type="submit" class="btn btn-full">Kayıt Ol</button></form></div></div>
+<script src="../assets/script.js?v=20260525-clean-ai"></script>
+</body></html>

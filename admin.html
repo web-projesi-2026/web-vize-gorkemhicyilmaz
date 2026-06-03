@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PROMPTLA Admin Panel</title><link rel="stylesheet" href="assets/style.css?v=20260523-categories"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body class="admin-shell-pro"><aside class="admin-sidebar"><div class="admin-brand">PROMPT<span>LA</span><small>Profesyonel Yönetim Paneli</small></div><button class="active" data-admin-tab="dashboard">📊 Dashboard</button><button data-admin-tab="prompts">🧩 Prompt Paneli</button><button data-admin-tab="categories">🗂️ Kategoriler</button><button data-admin-tab="games">🎮 Oyun Paneli</button><button data-admin-tab="comments">💬 Yorumlar</button><button data-admin-tab="colors">🎨 Renk Paneli</button><button data-admin-tab="models">🤖 AI Tanıtımları</button><button data-admin-tab="settings">⚙️ Site Ayarları</button><a href="index.html">← Siteye Dön</a></aside><main class="admin-main"><header class="admin-top"><div><span class="eyebrow">PRO PANEL</span><h1>PROMPTLA Admin</h1><p class="admin-muted">Tüm paneller düzenlenebilir statik arayüz olarak hazırlandı. Firebase bağlanınca bu alanlar canlı verilerle yönetilecek.</p></div><button class="btn" onclick="showSiteToast('Kaydetme akışı Firebase bağlanınca aktif olacak.')">Genel Kaydet</button></header><section class="admin-tab active" id="admin-dashboard"><div class="admin-stat-grid"><div><strong>15</strong><span>Toplam Prompt</span></div><div><strong>4</strong><span>Oyun</span></div><div><strong>7</strong><span>AI Model Tanıtımı</span></div><div><strong>7</strong><span>Kategori</span></div></div></section><section class="admin-tab" id="admin-prompts"><h2>Prompt Paneli</h2><p>Görsel, video, oyun, 3D modelleme, ödev, kod ve metin dahil tüm promptlar burada düzenlenebilir.</p><div class="admin-edit-list"><div class="admin-edit-row" data-admin-prompt="1">
+  <input value="Ürün Tanıtım Görseli" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" selected>Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Teknoloji ürününü koyu arka plan üzerinde, neon mavi ışıklarla, profesyonel reklam fotoğrafı gibi göster. Ürünün temel özelliklerini infografik çizgilerle belirt. Kompozisyon temiz, modern ve sosyal medya paylaşımına uygun olsun.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="2">
+  <input value="Fotoğraf Düzenleme Promptu" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" selected>Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Yüklediğim görselde ana karakterin yüz yapısını ve temel pozunu koru. Arka planı sade, profesyonel ve koyu teknoloji temalı hale getir. Renkleri daha canlı yap, ışığı yumuşat ve sonucu sosyal medya profil görseli gibi düzenle.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="3">
+  <input value="Kısa Tanıtım Videosu" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" selected>Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">PROMPTLA adlı yapay zeka eğitim platformu için 8 saniyelik modern tanıtım videosu oluştur. Koyu lacivert teknoloji arka planı, neon mavi ışık geçişleri, ekranda prompt kartları ve yapay zeka model ikonları görünsün. Kamera yavaşça ileri yaklaşsın, son karede PROMPTLA logosu belirsin.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="4">
+  <input value="Ürün Animasyon Videosu" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" selected>Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Tek bir ürün görselini kullanarak 6 saniyelik sinematik bir ürün tanıtım videosu hazırla. Ürün kendi etrafında hafifçe dönsün, arka planda mavi neon çizgiler ve teknik bilgi kartları belirsin. Video pürüzsüz, gerçekçi ve profesyonel reklam kalitesinde olsun.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="5">
+  <input value="Yılan Oyunu Oluşturma" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" selected>Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">HTML, CSS ve JavaScript kullanarak Canvas tabanlı yılan oyunu oluştur. Yılan mobil dokunmatik butonlar ve klavye ile kontrol edilsin. Duvara çarpınca ölmesin; sağdan çıkınca soldan, soldan çıkınca sağdan devam etsin. Sadece kendi gövdesine değerse oyun bitsin. Koyu tema, neon efektler, skor sistemi ve tekrar başlat butonu ekle.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="6">
+  <input value="Pacman Tarzı Labirent" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" selected>Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Canvas tabanlı Pacman tarzı basit labirent oyunu yap. Oyuncu noktaları toplasın, hayalet yavaşça takip etsin. Tüm noktalar toplanınca kazanma, hayalete yakalanınca oyun bitti ekranı çıksın. Mobil yön butonları, koyu arka plan, neon duvarlar ve skor sistemi ekle.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="7">
+  <input value="2D Hava Hokeyi" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" selected>Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">HTML Canvas ile 2D hava hokeyi oyunu oluştur. Oyuncu alttaki paddleı fare veya dokunma ile kontrol etsin. Rakip paddle basit yapay zekayla diski takip etsin. Disk duvarlardan sekmeli, aynı hizada takılmaması için minimum dikey hız korunmalı, maksimum hız sınırı uygulanmalı ve ilk 5 skora ulaşan kazansın.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="8">
+  <input value="Futbol Penaltı Oyunu" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" selected>Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">HTML, CSS ve JavaScript ile basit bir futbol penaltı oyunu oluştur. Oyuncu kaleye tıklayarak şut yönünü seçsin. Kaleci rastgele sola, ortaya veya sağa atlasın. Top yavaş animasyonla kaleye gitsin. 5 atış sonunda skor gösterilsin, tekrar oyna butonu ve mobil uyumlu tasarım olsun.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="9">
+  <input value="3D Yazıcı Telefon Standı" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" selected>3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">3D yazıcıda basılabilecek, tek parça, destek ihtiyacı az, yuvarlatılmış köşelere sahip masaüstü telefon standı modeli oluştur. Model sade, dayanıklı, düşük poligonlu ve STL/OBJ formatına dönüştürülebilir olmalı. Ölçüleri yaklaşık 10 cm genişlik, 8 cm yükseklik, 7 cm derinlik olacak şekilde düşün.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="10">
+  <input value="3D Maskot Figür" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" selected>3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">PROMPTLA markası için küçük, sevimli ve 3D yazıcıda basılabilir bir robot maskot modeli oluştur. Keskin çıkıntılar olmasın, dengeli ayakta durabilsin, tek parça basılmaya uygun olsun. Stil modern, sade ve teknoloji temalı olsun.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="11">
+  <input value="PDF Ödev Düzenleme" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" selected>Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Elimdeki ödev metnini akademik ama anlaşılır bir dille düzenle. Başlık, giriş, gelişme, sonuç ve kaynakça düzenini oluştur. Yazım hatalarını düzelt, cümleleri daha akıcı hale getir ve çıktı sonunda PDF olarak düzenlenebilecek temiz bir metin yapısı ver.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="12">
+  <input value="Word Rapor Taslağı" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" selected>Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Aşağıdaki konu için Word belgesi düzeninde rapor taslağı hazırla. Kapak bilgisi, içindekiler, giriş, ana başlıklar, sonuç ve kaynakça bölümleri olsun. Başlık hiyerarşisini net kur, tablo veya madde listesi gereken yerleri belirt.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="13">
+  <input value="Metin Özetleme ve Sunum" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" selected>Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Aşağıdaki uzun metni önce 10 maddelik kısa özete dönüştür, sonra 5 slaytlık sunum planı hazırla. Her slayt için başlık, kısa açıklama ve konuşmacı notu ekle. Dil sade, öğrenci sunumuna uygun ve anlaşılır olsun.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="14">
+  <input value="Kod Hata Ayıklama" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" selected>Kod</option><option value="metin" >Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">Aşağıdaki kodu incele. Önce hatanın olası nedenlerini listele, sonra hangi satırların değişmesi gerektiğini açıkla, en son düzeltilmiş kodu ver. Kodun mevcut tasarımını ve dosya yapısını mümkün olduğunca koru.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div>
+<div class="admin-edit-row" data-admin-prompt="15">
+  <input value="Sosyal Medya Metni" aria-label="Prompt başlığı">
+  <select aria-label="Kategori">
+    <option value="gorsel" >Görsel</option><option value="video" >Video</option><option value="oyun" >Oyun</option><option value="3d" >3D Modelleme</option><option value="odev" >Ödev Düzenleme</option><option value="kod" >Kod</option><option value="metin" selected>Metin / İçerik</option>
+  </select>
+  <textarea aria-label="Prompt metni">PROMPTLA projesi için kısa, profesyonel ve samimi bir sosyal medya duyurusu yaz. Platformun yapay zeka araçlarını tanıttığını, prompt yazmayı öğrettiğini ve topluluk paylaşımı sunduğunu belirt. Metin 3 paragrafı geçmesin.</textarea>
+  <div class="admin-row-actions"><button class="mini-action-btn">Güncelle</button><button class="mini-action-btn">Kopyala</button><button class="mini-action-btn">Pasifleştir</button></div>
+</div></div></section><section class="admin-tab" id="admin-categories"><h2>Kategori Yönetimi</h2><div class="admin-edit-list"><div class="admin-edit-row"><input value="Görsel Promptları"><textarea>Görsel oluşturma, düzenleme, ürün tanıtımı ve afiş promptları.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="3D Modelleme"><textarea>Meshy AI, Tripo AI ve 3D yazıcıya uygun model üretim promptları.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Ödev Düzenleme"><textarea>PDF, Word, özet, rapor, sunum ve kaynakça süreçleri.</textarea><button class="mini-action-btn">Güncelle</button></div></div></section><section class="admin-tab" id="admin-games"><h2>Oyun Yönetimi</h2><p>Oyun başlığı, açıklaması, bağlantısı ve prompt öğretisi düzenlenebilir.</p><div class="admin-edit-list"><div class="admin-edit-row"><input value="Yılan Oyunu"><textarea>Duvar geçişli yılan oyunu, sadece gövdeye çarpınca biter.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Pacman Tarzı Labirent"><textarea>Labirent, nokta toplama ve hayalet takip sistemi.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="2D Hava Hokeyi"><textarea>Optimize disk fiziği, paddle kontrolü ve skor sistemi.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Futbol Penaltı"><textarea>Şut yönü, kaleci hareketi ve 5 atışlık skor sistemi.</textarea><button class="mini-action-btn">Güncelle</button></div></div></section><section class="admin-tab" id="admin-comments"><h2>Yorum Yönetimi</h2><div class="admin-edit-list"><div class="admin-edit-row"><input value="Örnek kullanıcı yorumu"><textarea>Reddit tarzı iç içe yorumlar Firebase Firestore'a taşınınca burada listelenip düzenlenecek.</textarea><button class="mini-action-btn">Onayla</button><button class="mini-action-btn">Sil</button></div></div></section><section class="admin-tab" id="admin-colors"><h2>Renk Paneli</h2><div class="admin-form-grid"><label>Vurgu rengi <input type="color" value="#00d9ff"></label><label>İkinci vurgu <input type="color" value="#7c5cff"></label><label>Arka plan <input type="color" value="#060b14"></label><button class="btn">Tema Rengini Güncelle</button></div></section><section class="admin-tab" id="admin-models"><h2>Yapay Zeka Tanıtımları</h2><div class="admin-edit-list"><div class="admin-edit-row"><input value="ChatGPT"><textarea>ChatGPT tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Gemini"><textarea>Gemini tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Claude"><textarea>Claude tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Copilot"><textarea>Copilot tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Midjourney"><textarea>Midjourney tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Kimi"><textarea>Kimi tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div><div class="admin-edit-row"><input value="Meshy AI"><textarea>Meshy AI tanıtım açıklaması burada düzenlenebilir. Kendi yorum alanı ve resmi site butonu model sayfasında gösterilir.</textarea><button class="mini-action-btn">Güncelle</button></div></div></section><section class="admin-tab" id="admin-settings"><h2>Site Ayarları</h2><div class="admin-form-grid"><input value="Yapay zekayı sadece kullanma, mantığını da öğren."><textarea>PROMPTLA; yapay zeka araçlarını tanıtan, prompt yazım mantığını öğreten ve kullanıcıların paylaşım yapabildiği modern bir öğrenme platformudur.</textarea><input value="promptladigital@gmail.com"><button class="btn">Ayarları Kaydet</button></div></section></main><script src="assets/script.js?v=20260523-categories"></script></body></html>
